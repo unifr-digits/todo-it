@@ -5,12 +5,22 @@ const todo_1 = require("./todo");
 const project_1 = require("./project");
 class User {
     constructor() {
-        this.firstName = "John";
-        this.lastName = "Stevens";
-        this.userName = "JoStev";
-        this.emailAdress = "john.stevens@hotmail.com";
-        this.password = "hello123";
-        this.usedDevices = ["smartphone", "table"];
+        this.firstName = "";
+        this.lastName = "";
+        this.userName = "";
+        this.emailAdress = "";
+        this.password = "";
+        this.usedDevices = [""];
+    }
+    setName(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    setEmailAdress(emailAdress) {
+        this.emailAdress = emailAdress;
+    }
+    setusedDevices(usedDevices) {
+        this.usedDevices = usedDevices;
     }
     logIn(userName, password) {
         this.userName = userName;
@@ -22,7 +32,7 @@ class User {
     }
     createToDo(name, description, toDoID, finishDate, addedModuleList, isDone) {
         var newToDo = new todo_1.ToDo(name, description, toDoID, finishDate, addedModuleList, isDone);
-        console.log(`new ${newToDo.name} To-Do created with the description: ${newToDo.description}, that has to be finished on ${newToDo.finishDate}`);
+        console.log(`new To-Do created with the name: ${newToDo.name} and the description: ${newToDo.description}, that has to be finished on ${newToDo.finishDate}`);
     }
     completeToDo() {
     }
@@ -30,7 +40,7 @@ class User {
     }
     createProject(name, description, projectID, addedModuleList, toDoList) {
         var newProject = new project_1.Project(name, description, projectID, addedModuleList, toDoList);
-        console.log(`new ${newProject.name} project created with the description: ${newProject.description}, that contains the To-Do's: ${newProject.toDoList}`);
+        console.log(`new project created with the name ${newProject.name} and the description: ${newProject.description}, that contains the To-Do's: ${newProject.toDoList}`);
     }
     addModule() {
     }

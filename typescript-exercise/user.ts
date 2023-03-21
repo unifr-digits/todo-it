@@ -9,12 +9,22 @@ export class User {
     usedDevices: string[];
 
     constructor(){
-        this.firstName = "John";
-        this.lastName = "Stevens";
-        this.userName = "JoStev";
-        this.emailAdress = "john.stevens@hotmail.com";
-        this.password = "hello123";
-        this.usedDevices = ["smartphone","table"];
+        this.firstName = "";
+        this.lastName = "";
+        this.userName = "";
+        this.emailAdress = "";
+        this.password = "";
+        this.usedDevices = [""];
+    }
+    setName(firstName:string,lastName:string):void{
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    setEmailAdress(emailAdress:string):void{
+        this.emailAdress = emailAdress;
+    }
+    setusedDevices(usedDevices:string[]):void{
+        this.usedDevices = usedDevices
     }
     logIn(userName:string, password:string): void{
         this.userName = userName;
@@ -26,7 +36,7 @@ export class User {
     }
     createToDo(name:string,description:string,toDoID:number,finishDate:Date,addedModuleList:string[],isDone:boolean): void{
         var newToDo = new ToDo(name,description,toDoID,finishDate,addedModuleList,isDone)
-        console.log(`new ${newToDo.name} To-Do created with the description: ${newToDo.description}, that has to be finished on ${newToDo.finishDate}`);
+        console.log(`new To-Do created with the name: ${newToDo.name} and the description: ${newToDo.description}, that has to be finished on ${newToDo.finishDate}`);
     }
     completeToDo(): void{
 
@@ -36,7 +46,7 @@ export class User {
     }
     createProject(name:string,description:string,projectID:number,addedModuleList:string[],toDoList:ToDo[]): void{
         var newProject = new Project(name,description,projectID,addedModuleList,toDoList)
-        console.log(`new ${newProject.name} project created with the description: ${newProject.description}, that contains the To-Do's: ${newProject.toDoList}`);
+        console.log(`new project created with the name ${newProject.name} and the description: ${newProject.description}, that contains the To-Do's: ${newProject.toDoList}`);
     }
     addModule(): void{
 
@@ -47,4 +57,5 @@ export class User {
     filterToDo(): void{
 
     }
+
 }
