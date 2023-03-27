@@ -2,7 +2,7 @@ import {ToDo} from "./todo";
 export class Project {
     name: string;
     description: string;
-    projectID: number;
+    protected projectID: number;
     addedModuleList: string[];
     toDoList: ToDo[];
 

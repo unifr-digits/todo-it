@@ -1,7 +1,7 @@
 export class ToDo {
     name: string;
     description: string;
-    toDoID: number;
+    protected toDoID: number;
     finishDate: Date;
     addedModuleList: string[];
     isDone: boolean;
