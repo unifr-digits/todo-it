@@ -28,10 +28,32 @@ img.center {
   <body>
     <!-- Adding a logo image -->
     <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200">
-
-    <h1>ToDo-it</h1>
-    <h3>ToDo things faster and better.</h3>
-    <p>ToDo-it is a simple and easy-to-use todo application that helps you stay organized and get things done.</p>
-    <p>With ToDo-it, you can create tasks, set due dates and reminders, and track your progress towards completing your goals.</p>
+    <div class="main">
+      <h1>My To Do List</h1>
+      <label for="addTaskInput">What would you like to do today?</label>
+      <form (keyup.enter)="addTask(taskName.value,taskDesc.value,0,taskDate.value ,[taskModule.value]);">
+        <label for="addTaskName">Name:</label><br>
+        <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
+        <label for="addTaskDesc">Description:</label><br>
+        <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc"><br>
+        <label for="addTaskDate">Date:</label><br>
+        <input #taskDate type="date" id="taskDate"><br>
+        <label for="addTaskModule">Module List:</label><br>
+        <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
+      </form> 
+      
+      <!-- need to do something for the todoID -->
+      <button class="btn-primary" (click)="addTask(taskName.value,taskDesc.value,0,taskDate.value ,[taskModule.value])">Add</button>
+    
+      <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else elseBlock">task</span> 
+        <ng-template #elseBlock>tasks</ng-template></h2>
+        
+        <ul>
+          <li *ngFor="let i of tasks">
+            <app-task (remove)="remove(i)" [task]="i"></app-task>
+          </li>
+        </ul>
+        
+    </div>
   </body>
 </html>
