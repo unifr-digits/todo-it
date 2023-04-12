@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../task';
 
 @Component({
@@ -7,12 +7,12 @@ import { Task } from '../task';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent {
-
-  @Input() task!: Task; //task is always initialized and not undefined
-  @Output() remove = new EventEmitter<Task>();// raise an event when there is data to share with app.component
+  @Input() task!: Task;
+  @Output() remove = new EventEmitter<Task>();
 
   saveTask(description: string){
     if(!description)return;
-    this.task.description = description;
+    this.task.desc = description;
   }
+
 }

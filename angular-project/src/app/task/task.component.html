@@ -1,8 +1,8 @@
 <div class="task">
-    <input [id]="task.description" type="checkbox" (change)="task.isDone = !task.isDone" [checked]="task.isDone" />
+    <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
     <label [for]="task.name">{{task.name}}</label>
-    <label [for]="task.description">{{task.description}}</label>
-    <label [for]="task.finishDate">{{task.finishDate}}</label>
-    <label [for]="task.description">{{task.addedModuleList}}</label>
+    <label [for]="task.desc">{{task.desc}}</label>
+    <label [for]="task.date">{{task.date}}</label>
+    <label [for]="task.modules">{{task.modules}}</label>
     <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
 </div>

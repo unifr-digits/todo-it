@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { TaskComponent } from './task/task.component';
 import { ProjectComponent } from './project/project.component';
 import { UserComponent } from './user/user.component';
+import { TaskService } from './task.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { UserComponent } from './user/user.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

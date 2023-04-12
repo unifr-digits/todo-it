@@ -1,24 +1,25 @@
+
 export class Task {
     name: string;
-    description: string;
-    toDoID: number;
-    finishDate: string;
-    addedModuleList: string[];
-    isDone: boolean;
+    desc: string;
+    id: number;
+    date: string;
+    modules: string[];
+    done: boolean;
 
     constructor(
         name: string,
-        description: string,
-        toDoID: number,
-        finishDate: string,
-        addedModuleList: string[],
-        isDone: boolean
+        desc: string,
+        id: number,
+        date: string,
+        modules: string[],
+        done: boolean
     ) {
         this.name = name;
-        this.description = description;
-        this.toDoID = 1;
-        this.finishDate = finishDate;
-        this.addedModuleList = addedModuleList;
-        this.isDone = isDone;
+        this.desc = desc;
+        this.id = 1;
+        this.date = date;
+        this.modules = modules;
+        this.done = done;
     }
 }

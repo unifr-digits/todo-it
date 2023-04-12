@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskService } from './task.service';
 import { Task } from './task';
 
 @Component({
@@ -7,29 +8,21 @@ import { Task } from './task';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo';
+  title= "ToDo-it"
+  tasks: Task[];
 
-  allTasks = [
-    {name:"Buy t-shirt",description:"I need a black tshirt from H&M ",toDoID:1,finishDate:"2023-01-10",addedModuleList: [""] ,isDone: true},
-    {name:"sysdev assignment 2",description:"finish assignment 2 for sysdev course",toDoID:2,finishDate:"2023-04-06",addedModuleList: [""],isDone:false },
-    {name:"workout" ,description:"20 min running session",toDoID:3,finishDate:"2023-01-10",addedModuleList: [""],isDone:false}
-  ]
-  get tasks(){
-    return this.allTasks;
+  constructor(private taskService: TaskService) {
+    this.tasks = taskService.tasks;
+    console.log(this.tasks)
   }
 
-  addTask(name:string,description:string,toDoID:number,finishDate:string,addedModuleList:string[] ){
-    this.allTasks.unshift({
-      name,
-      description,
-      toDoID,
-      finishDate,
-      addedModuleList,
-      isDone: false
-    });
+  addTask(name: string, desc: string, id: number, date: string, modules: string[]) {
+    this.taskService.addTask(name, desc, id, date, modules);
+    this.tasks = this.taskService.tasks;
   }
 
   remove(task: Task) {
-    this.allTasks.splice(this.allTasks.indexOf(task), 1);
+    this.taskService.deleteTask(task);
+    this.tasks = this.taskService.tasks;
   }
 }
