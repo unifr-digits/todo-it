@@ -9,7 +9,7 @@
     <div class="main">
       <h1>My To Do List</h1>
       <label for="addTaskInput">What would you like to do today?</label>
-      <form (keyup.enter)="addTask(taskName.value,taskDesc.value,0,taskDate.value ,[taskModule.value]);">
+      <form (keyup.enter)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], [assignedUsers.value], [assignedProjects.value])">
         <label for="addTaskName">Name:</label><br>
         <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
         <label for="addTaskDesc">Description:</label><br>
@@ -18,10 +18,13 @@
         <input #taskDate type="date" id="taskDate"><br>
         <label for="addTaskModule">Module List:</label><br>
         <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
+        <label for="addAssignedUsers">Assigned Users:</label><br>
+        <input #assignedUsers placeholder="add assigned users" class="lg-text-input" id="addAssignedUsers"><br>
+        <label for="addAssignedProjects">Assigned Projects:</label><br>
+        <input #assignedProjects placeholder="add assigned projects" class="lg-text-input" id="addAssignedProjects"><br>
       </form> 
       
-      <!-- need to do something for the todoID -->
-      <button class="btn-primary" (click)="addTask(taskName.value,taskDesc.value,0,taskDate.value ,[taskModule.value])">Add</button>
+      <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], [assignedUsers.value], [assignedProjects.value])">Add</button>
     
       <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else elseBlock">task</span> 
         <ng-template #elseBlock>tasks</ng-template></h2>

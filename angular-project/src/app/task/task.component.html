@@ -4,5 +4,7 @@
     <label [for]="task.desc">{{task.desc}}</label>
     <label [for]="task.date">{{task.date}}</label>
     <label [for]="task.modules">{{task.modules}}</label>
+    <label [for]="task.assignedUsers">{{task.assignedUsers}}</label>
+    <label [for]="task.assignedProjects">{{task.assignedProjects}}</label>
     <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
 </div>

@@ -6,6 +6,8 @@ import { TaskComponent } from './task/task.component';
 import { ProjectComponent } from './project/project.component';
 import { UserComponent } from './user/user.component';
 import { TaskService } from './task.service';
+import { ProjectService } from './project.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,11 @@ import { TaskService } from './task.service';
   imports: [
     BrowserModule
   ],
-  providers: [TaskService],
+  providers: [
+    TaskService,
+    ProjectService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

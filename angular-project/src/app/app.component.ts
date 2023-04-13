@@ -13,11 +13,10 @@ export class AppComponent {
 
   constructor(private taskService: TaskService) {
     this.tasks = taskService.tasks;
-    console.log(this.tasks)
   }
 
-  addTask(name: string, desc: string, id: number, date: string, modules: string[]) {
-    this.taskService.addTask(name, desc, id, date, modules);
+  addTask(name: string, desc: string, id: number, date: string, modules: string[],assignedUsers: string[], assignedProjects: string[]) {
+    this.taskService.addTask(name, desc, id, date, modules,assignedUsers ,assignedProjects);
     this.tasks = this.taskService.tasks;
   }
 
