@@ -4,28 +4,31 @@
     <title>ToDo-it</title>
   </head>
   <body>
-    <!-- Adding a logo image -->
     <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200">
     <div class="main">
-      <h1>My To Do List</h1>
-      <label for="addTaskInput">What would you like to do today?</label>
-      <form (keyup.enter)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], [assignedUsers.value], [assignedProjects.value])">
-        <label for="addTaskName">Name:</label><br>
-        <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
-        <label for="addTaskDesc">Description:</label><br>
-        <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc"><br>
-        <label for="addTaskDate">Date:</label><br>
-        <input #taskDate type="date" id="taskDate"><br>
-        <label for="addTaskModule">Module List:</label><br>
-        <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
-        <label for="addAssignedUsers">Assigned Users:</label><br>
-        <input #assignedUsers placeholder="add assigned users" class="lg-text-input" id="addAssignedUsers"><br>
-        <label for="addAssignedProjects">Assigned Projects:</label><br>
-        <input #assignedProjects placeholder="add assigned projects" class="lg-text-input" id="addAssignedProjects"><br>
-      </form> 
+      <div class="task">
+        <h1>My Task List</h1>
+        <form (keyup.enter)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
+          <label for="addTaskName">Name:</label><br>
+          <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
+          <label for="addTaskDesc">Description:</label><br>
+          <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc"><br>
+          <label for="addTaskDate">Date:</label><br>
+          <input #taskDate type="date" id="taskDate"><br>
+          <label for="addTaskModule">Module List:</label><br>
+          <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
+          <label for="addAssignedUsers">Assigned Users:</label><br>
+          <select #assignedUsersSelect id="addAssignedUsers" class="lg-text-input">
+            <option *ngFor="let user of assignedUsers" [value]="user.emailAdress">{{ user.firstName }}</option>
+          </select><br>
+          <label for="addAssignedProjects">Assigned Projects:</label><br>
+          <select #assignedUsersSelect id="addAssignedProjects" class="lg-text-input">
+            <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
+          </select><br>
+        </form>
+        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
+      </div>
       
-      <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], [assignedUsers.value], [assignedProjects.value])">Add</button>
-    
       <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else elseBlock">task</span> 
         <ng-template #elseBlock>tasks</ng-template></h2>
         

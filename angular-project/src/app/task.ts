@@ -1,3 +1,4 @@
+import { Project } from "./project";
 import { User } from "./user";
 
 export interface Task {
@@ -7,6 +8,6 @@ export interface Task {
     date: string;
     modules: string[];
     done: boolean;
-    assignedUsers: string[];
-    assignedProjects: string[];
+    assignedUsers: User[];
+    assignedProjects: Project[];
 }

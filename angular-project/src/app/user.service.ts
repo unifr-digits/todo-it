@@ -9,7 +9,8 @@ export class UserService {
   constructor() {}
 
   allUsers = [
-    {firstName:"John", lastName:"Twick", userName:"Jtwick", emailAdress:"John.twick@hotmail.com", password:"1234",usedDevices:["tablet","phone"]}
+    {firstName:"David", lastName:"Gauch", userName:"GauchD", emailAdress:"david.gauch@unifr.ch", password:"1234",usedDevices:["tablet","phone"]},
+    {firstName:"Mattias", lastName:"Duerrmeier", userName:"DuerrmeierM", emailAdress:"duerrmeier.mattias", password:"1234",usedDevices:["tablet","phone"]},
   ]
 
   get users(){
