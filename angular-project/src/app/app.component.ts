@@ -28,8 +28,27 @@ export class AppComponent {
     this.tasks = this.taskService.tasks;
   }
 
-  remove(task: Task) {
+  addUser(firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
+    this.userService.addUser(firstName,lastName,userName,emailAdress,password,usedDevices);
+    this.assignedUsers = this.userService.users;
+  }
+
+  addProject(name: string, desc: string, modules:string[]){
+    this.projectService.addProject(name,desc,modules);
+    this.assignedProjects = this.projectService.projects;
+  }
+
+  removeTask(task: Task) {
     this.taskService.deleteTask(task);
     this.tasks = this.taskService.tasks;
+  }
+  removeUser(user: User) {
+    this.userService.deleteUser(user);
+    this.assignedUsers= this.userService.users;
+  }
+
+  removeProject(project: Project) {
+    this.projectService.deleteProject(project);
+    this.assignedProjects = this.projectService.projects;
   }
 }

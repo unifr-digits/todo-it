@@ -27,6 +27,9 @@ export class UserService {
       usedDevices
     });
   }
+  deleteUser(user: User) {
+    this.allUsers.splice(this.allUsers.indexOf(user), 1);
+  }
   setName(firstName: string, lastName: string): void {
     firstName = firstName;
     lastName = lastName;

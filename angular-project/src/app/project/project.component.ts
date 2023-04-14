@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ProjectService } from '../project.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../project';
-import { Task } from '../task';
+
 
 
 @Component({
@@ -10,15 +9,11 @@ import { Task } from '../task';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent {
-  title = "Project Management"
-  projects: Project[];
+  @Input() project!: Project;
+  @Output() remove = new EventEmitter<Project>();
 
-  constructor(private projectService: ProjectService) {
-    this.projects = projectService.projects;
-  }
-
-  addProject(name: string, desc: string, modules:string[]) {
-    this.projectService.addProject(name, desc, modules);
-    this.projects = this.projectService.projects;
+  saveProject(desc: string){
+    if(!desc)return;
+    this.project.desc = desc;
   }
 }

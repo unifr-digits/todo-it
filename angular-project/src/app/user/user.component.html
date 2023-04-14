@@ -1,16 +1,6 @@
-<div class="user">
-    <label for="firstName">First Name:</label>
-    <input #firstName placeholder="Enter first name" class="lg-text-input" id="firstName"><br>
-    <label for="lastName">Last Name:</label>
-    <input #lastName placeholder="Enter last name" class="lg-text-input" id="lastName"><br>
-    <label for="userName">Username:</label>
-    <input #userName placeholder="Enter username" class="lg-text-input" id="userName"><br>
-    <label for="emailAddress">Email Address:</label>
-    <input #emailAddress placeholder="Enter email address" class="lg-text-input" id="emailAddress"><br>
-    <label for="password">Password:</label>
-    <input #password placeholder="Enter password" class="lg-text-input" type="password" id="password"><br>
-    <label for="usedDevices">Used Devices:</label>
-    <input #usedDevices placeholder="Enter used devices" class="lg-text-input" id="usedDevices"><br>
-    <button class="btn-primary" (click)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value, usedDevices.value.split(','))">Add User</button>
-  </div>
+<div class="users">
+  <label [for]="user.firstName">{{user.firstName}}</label>
+  <label [for]="user.lastName">{{user.lastName}}</label>
+  <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
+</div>
   
