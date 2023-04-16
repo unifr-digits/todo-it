@@ -55,15 +55,17 @@
             <option *ngFor="let user of assignedUsers" [value]="user.emailAdress">{{ user.firstName }}</option>
           </select><br>
           <label for="addAssignedProjects">Assigned Projects:</label><br>
-          <select #assignedUsersSelect id="addAssignedProjects" class="lg-text-input">
+          <select #assignedProjectsSelect id="addAssignedProjects" class="lg-text-input">
             <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
           </select><br>
         </form>
         <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
       </div>
+      
+      
 
-      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length === 1; else elseBlock">user</span> 
-        <ng-template #elseBlock>users</ng-template></h2>
+      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length === 1; else userPlural">user</span> 
+        <ng-template #userPlural>users</ng-template></h2>
         
         <ul>
           <li *ngFor="let i of assignedUsers">
@@ -71,8 +73,8 @@
           </li>
         </ul>
 
-      <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length === 1; else elseBlock">project</span> 
-        <ng-template #elseBlock>projects</ng-template></h2>
+      <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length === 1; else projectPlural">project</span> 
+        <ng-template #projectPlural>projects</ng-template></h2>
           
         <ul>
           <li *ngFor="let i of assignedProjects">
@@ -80,8 +82,8 @@
           </li>
         </ul>
 
-      <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else elseBlock">task</span> 
-        <ng-template #elseBlock>tasks</ng-template></h2>
+      <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else taskPlural">task</span> 
+        <ng-template #taskPlural>tasks</ng-template></h2>
         
         <ul>
           <li *ngFor="let i of tasks">

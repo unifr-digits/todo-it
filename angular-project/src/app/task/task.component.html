@@ -1,10 +1,14 @@
 <div class="task">
-    <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
-    <label [for]="task.name">{{task.name}}</label>
-    <label [for]="task.desc">{{task.desc}}</label>
-    <label [for]="task.date">{{task.date}}</label>
-    <label [for]="task.modules">{{task.modules}}</label>
-    <label [for]="task.assignedUsers">{{task.assignedUsers.toString()}}</label>
-    <label [for]="task.assignedProjects">{{task.assignedProjects.toString()}}</label>
-    <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
+  <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
+  <label [for]="task.name">{{task.name}}</label>
+  <label [for]="task.desc">{{task.desc}}</label>
+  <label [for]="task.date">{{task.date}}</label>
+  <label [for]="task.modules">{{task.modules}}</label>
+  <ng-container *ngIf="task.assignedUsers">
+    <label [for]="task.assignedUsers">{{task.assignedUsers}}</label>
+  </ng-container>
+  <ng-container *ngIf="task.assignedProjects">
+    <label [for]="task.assignedProjects">{{task.assignedProjects}}</label>
+  </ng-container>
+  <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
 </div>
