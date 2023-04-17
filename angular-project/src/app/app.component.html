@@ -12,17 +12,23 @@
         <form (keyup.enter)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value, usedDevices.value.split(','))">
           <label for="firstName">First Name:</label>
           <input #firstName placeholder="Enter first name" class="lg-text-input" id="firstName"><br>
+
           <label for="lastName">Last Name:</label>
           <input #lastName placeholder="Enter last name" class="lg-text-input" id="lastName"><br>
+
           <label for="userName">Username:</label>
           <input #userName placeholder="Enter username" class="lg-text-input" id="userName"><br>
+
           <label for="emailAddress">Email Address:</label>
           <input #emailAddress placeholder="Enter email address" class="lg-text-input" id="emailAddress"><br>
+
           <label for="password">Password:</label>
           <input #password placeholder="Enter password" class="lg-text-input" type="password" id="password"><br>
+
           <label for="usedDevices">Used Devices:</label>
           <input #usedDevices placeholder="Enter used devices" class="lg-text-input" id="usedDevices"><br>
         </form>
+
         <button class="btn-primary" (click)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value, usedDevices.value.split(','))">Add User</button>
       </div>
 
@@ -31,11 +37,14 @@
         <form (keyup.enter)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">
           <label for="projectName">Name:</label>
           <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName"><br>
+
           <label for="projectDesc">Description:</label>
           <input #projectDesc placeholder="Enter project description" class="lg-text-input" id="projectDesc"><br>
+
           <label for="projectModules">Modules:</label>
           <input #projectModules placeholder="Enter project modules, separated by commas" class="lg-text-input" id="projectModules"><br>
         </form>
+
         <button class="btn-primary" (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">Add Project</button>
       </div>
 
@@ -44,16 +53,21 @@
         <form (keyup.enter)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
           <label for="addTaskName">Name:</label><br>
           <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
+
           <label for="addTaskDesc">Description:</label><br>
           <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc"><br>
+
           <label for="addTaskDate">Date:</label><br>
           <input #taskDate type="date" id="taskDate"><br>
+
           <label for="addTaskModule">Module List:</label><br>
           <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
+
           <label for="addAssignedUsers">Assigned Users:</label><br>
           <select #assignedUsersSelect id="addAssignedUsers" class="lg-text-input">
             <option *ngFor="let user of assignedUsers" [value]="user.emailAdress">{{ user.firstName }}</option>
           </select><br>
+
           <label for="addAssignedProjects">Assigned Projects:</label><br>
           <select #assignedProjectsSelect id="addAssignedProjects" class="lg-text-input">
             <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
@@ -61,36 +75,34 @@
         </form>
         <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
       </div>
-      
-      
 
-      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length === 1; else userPlural">user</span> 
+      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length <= 1; else userPlural">user</span>
         <ng-template #userPlural>users</ng-template></h2>
-        
+
         <ul>
           <li *ngFor="let i of assignedUsers">
             <app-user (remove)="removeUser(i)" [user]="i"></app-user>
           </li>
         </ul>
 
-      <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length === 1; else projectPlural">project</span> 
+      <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
         <ng-template #projectPlural>projects</ng-template></h2>
-          
+
         <ul>
           <li *ngFor="let i of assignedProjects">
             <app-project (remove)="removeProject(i)" [project]="i"></app-project>
           </li>
         </ul>
 
-      <h2>{{tasks.length}} <span *ngIf="tasks.length === 1; else taskPlural">task</span> 
+      <h2>{{tasks.length}} <span *ngIf="tasks.length <= 1; else taskPlural">task</span>
         <ng-template #taskPlural>tasks</ng-template></h2>
-        
+
         <ul>
           <li *ngFor="let i of tasks">
             <app-task (remove)="removeTask(i)" [task]="i"></app-task>
           </li>
         </ul>
-        
+
     </div>
   </body>
 </html>
