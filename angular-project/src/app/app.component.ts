@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './task';
-import { User } from './user';
+import { User } from './users/user';
 import { Project } from './project';
-import { UserService } from './user.service';
+import { UserService } from './users/user.service';
 import { ProjectService } from './project.service';
 
 @Component({

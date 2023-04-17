@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TaskComponent } from './task/task.component';
 import { ProjectComponent } from './project/project.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './users/user/user.component';
 import { TaskService } from './task.service';
 import { ProjectService } from './project.service';
-import { UserService } from './user.service';
+import { UserService } from './users/user.service';
 
 @NgModule({
   declarations: [
