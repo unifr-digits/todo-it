@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { User } from '../user';
+import { USERS } from '../mock-users';
 
 @Component({
   selector: 'app-user',
@@ -9,12 +10,10 @@ import { User } from '../user';
 })
 export class UserComponent {
 
-  @Input() user!: User;
-  @Output() remove = new EventEmitter<User>();
+  users = USERS;
 
-  saveUser(userName: string){
-    if(!userName)return;
-    this.user.userName = userName;
+  selectedUser?: User;
+  onSelect(user: User): void {
+    this.selectedUser = user;
   }
-
 }

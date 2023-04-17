@@ -48,6 +48,8 @@
         <button class="btn-primary" (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">Add Project</button>
       </div>
 
+      <app-user></app-user>
+
       <div class="task">
         <h1>My Task List</h1>
         <form (keyup.enter)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
@@ -76,15 +78,6 @@
 
         <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
       </div>
-
-      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length <= 1; else userPlural">user</span>
-        <ng-template #userPlural>users</ng-template></h2>
-
-        <ul>
-          <li *ngFor="let i of assignedUsers">
-            <app-user (remove)="removeUser(i)" [user]="i"></app-user>
-          </li>
-        </ul>
 
       <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
         <ng-template #projectPlural>projects</ng-template></h2>

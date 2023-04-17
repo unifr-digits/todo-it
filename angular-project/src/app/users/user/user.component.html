@@ -1,6 +1,12 @@
-<div class="users">
-  <label [for]="user.firstName">{{user.firstName}}</label>
-  <label [for]="user.lastName">{{user.lastName}}</label>
-  <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-</div>
-  
+<h2>Users</h2>
+
+<ul class="users">
+  <li *ngFor="let user of users">
+    <button [class.selected]="user === selectedUser" type="button" (click)=onSelect(user)>
+      <span class="name">{{ user.firstName }}</span>
+      <span class="name"> {{ user.lastName }}</span>
+    </button>
+  </li>
+</ul>
+
+<app-user-detail [user]="selectedUser"></app-user-detail>
