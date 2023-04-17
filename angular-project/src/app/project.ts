@@ -1,4 +1,4 @@
-import { Task } from "./task";
+import { Task } from "./tasks/task";
 export interface Project {
     name: string;
     desc: string;
