@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
+
 import { User } from './user';
+import { USERS } from './mock-users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  allUsers = USERS;
+
   constructor() {}
 
-  allUsers = [
-    {firstName:"David", lastName:"Gauch", userName:"GauchD", emailAdress:"david.gauch@unifr.ch", password:"1234",usedDevices:["tablet","phone"]},
-    {firstName:"Mattias", lastName:"Duerrmeier", userName:"DuerrmeierM", emailAdress:"duerrmeier.mattias", password:"1234",usedDevices:["tablet","phone"]},
-  ]
-
-  get users(){
+  get users() {
     return this.allUsers;
   }
 

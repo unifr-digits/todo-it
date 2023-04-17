@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../user';
 
+import { User } from '../user';
 
 @Component({
   selector: 'app-user',
@@ -8,6 +8,7 @@ import { User } from '../user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
+
   @Input() user!: User;
   @Output() remove = new EventEmitter<User>();
 
