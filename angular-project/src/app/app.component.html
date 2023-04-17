@@ -41,7 +41,7 @@
 
       <div class="task">
         <h1>My Task List</h1>
-        <form (keyup.enter)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
+        <form (keyup.enter)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
           <label for="addTaskName">Name:</label><br>
           <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
           <label for="addTaskDesc">Description:</label><br>
@@ -59,7 +59,7 @@
             <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
           </select><br>
         </form>
-        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, 0, taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
+        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
       </div>
       
       

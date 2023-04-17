@@ -4,7 +4,7 @@ import { User } from "./user";
 export interface Task {
     name: string;
     desc: string;
-    id: number;
+    id?: number;
     date: string;
     modules: string[];
     done: boolean;

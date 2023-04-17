@@ -35,10 +35,13 @@ export class ProjectService {
   }
 
   addProject(name: string, desc: string, modules:string[]) {
+    const min = 1;
+    const max = 100;
+    const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
     const newProject: Project = {
       name,
       desc,
-      id: this.allProjects.length + 1,
+      id: randomInt,
       modules,
       tasks: [],
     };

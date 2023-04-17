@@ -23,8 +23,8 @@ export class AppComponent {
     this.assignedProjects = projectService.projects;
   }
 
-  addTask(name: string, desc: string, id: number, date: string, modules: string[],assignedUsers: User[], assignedProjects: Project[]) {
-    this.taskService.addTask(name, desc, id, date, modules,assignedUsers ,assignedProjects);
+  addTask(name: string, desc: string, date: string, modules: string[],assignedUsers: User[], assignedProjects: Project[]) {
+    this.taskService.addTask(name, desc,date, modules,assignedUsers ,assignedProjects);
     this.tasks = this.taskService.tasks;
   }
 
