@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Task } from './tasks/task';
 import { User } from './users/user';
-import { Project } from './project';
+import { Project } from './projects/project';
 import { TaskService } from './tasks/task.service';
 import { UserService } from './users/user.service';
-import { ProjectService } from './project.service';
+import { ProjectService } from './projects/project.service';
 
 @Component({
   selector: 'app-root',
