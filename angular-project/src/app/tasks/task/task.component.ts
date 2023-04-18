@@ -1,17 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Task } from '../task';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
-export class TaskComponent {
-  @Input() task!: Task;
-  @Output() remove = new EventEmitter<Task>();
+export class TaskComponent implements OnInit {
+  tasks: Task[] = [];
 
-  saveTask(description: string) {
-    if (!description) return;
-    this.task.desc = description;
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.getTasks();
+  }
+
+  getTasks(): void {
+    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+  }
+
+  deleteTask(task: Task) {
+    this.taskService.deleteTask(task);
   }
 }

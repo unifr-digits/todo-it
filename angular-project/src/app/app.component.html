@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ToDo-it</title>
+    <title>{{ title }}</title>
   </head>
   <body>
     <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200" />
@@ -133,16 +133,7 @@
         </li>
       </ul>
 
-      <h2>
-        {{ tasks.length }} <span *ngIf="tasks.length <= 1; else taskPlural">task</span>
-        <ng-template #taskPlural>tasks</ng-template>
-      </h2>
-
-      <ul>
-        <li *ngFor="let i of tasks">
-          <app-task (remove)="removeTask(i)" [task]="i"></app-task>
-        </li>
-      </ul>
+      <app-task></app-task>
     </div>
   </body>
 </html>
