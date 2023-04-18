@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { TaskService } from './task.service';
-import { Task } from './task';
-import { User } from './user';
-import { Project } from './project';
-import { UserService } from './user.service';
-import { ProjectService } from './project.service';
+import { Task } from './tasks/task';
+import { User } from './users/user';
+import { Project } from './projects/project';
+import { TaskService } from './tasks/task.service';
+import { UserService } from './users/user.service';
+import { ProjectService } from './projects/project.service';
 
 @Component({
   selector: 'app-root',
@@ -14,23 +14,26 @@ import { ProjectService } from './project.service';
 export class AppComponent {
   title= "ToDo-it"
   tasks: Task[];
-  assignedUsers: User[];
+  users: User[] = [];
   assignedProjects: Project[];
 
-  constructor(private taskService: TaskService, private userService:UserService, private projectService: ProjectService) {
+  constructor(private taskService: TaskService, private userService: UserService, private projectService: ProjectService) {
     this.tasks = taskService.tasks;
-    this.assignedUsers = userService.users;
     this.assignedProjects = projectService.projects;
   }
 
-  addTask(name: string, desc: string, date: string, modules: string[],assignedUsers: User[], assignedProjects: Project[]) {
-    this.taskService.addTask(name, desc,date, modules,assignedUsers ,assignedProjects);
+  ngOnInit() {
+    this.userService.getUsers()
+    .subscribe(users => this.users = users);
+  }
+
+  addTask(name: string, desc: string, date: string, modules: string[],users: User[], assignedProjects: Project[]) {
+    this.taskService.addTask(name, desc, date, modules,users ,assignedProjects);
     this.tasks = this.taskService.tasks;
   }
 
   addUser(firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
     this.userService.addUser(firstName,lastName,userName,emailAdress,password,usedDevices);
-    this.assignedUsers = this.userService.users;
   }
 
   addProject(name: string, desc: string, modules:string[]){
@@ -44,7 +47,6 @@ export class AppComponent {
   }
   removeUser(user: User) {
     this.userService.deleteUser(user);
-    this.assignedUsers= this.userService.users;
   }
 
   removeProject(project: Project) {

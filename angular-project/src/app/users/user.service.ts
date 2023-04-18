@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { User } from './user';
+import { USERS } from './mock-users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() {}
+  allUsers = USERS;
 
-  allUsers = [
-    {firstName:"David", lastName:"Gauch", userName:"GauchD", emailAdress:"david.gauch@unifr.ch", password:"1234",usedDevices:["tablet","phone"]},
-    {firstName:"Mattias", lastName:"Duerrmeier", userName:"DuerrmeierM", emailAdress:"duerrmeier.mattias", password:"1234",usedDevices:["tablet","phone"]},
-  ]
+  constructor() { }
 
-  get users(){
-    return this.allUsers;
+  getUsers(): Observable<User[]> {
+    const users = of(USERS);
+    return users;
   }
 
-  addUser( firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
+  addUser(firstName: string, lastName: string, userName: string, emailAdress: string, password: string, usedDevices: string[]) {
     this.allUsers.unshift({
       firstName,
       lastName,

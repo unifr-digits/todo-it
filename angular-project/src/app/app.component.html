@@ -50,7 +50,7 @@
 
       <div class="task">
         <h1>My Task List</h1>
-        <form (keyup.enter)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">
+        <form (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)">
           <label for="addTaskName">Name:</label><br>
           <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
 
@@ -64,8 +64,8 @@
           <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
 
           <label for="addAssignedUsers">Assigned Users:</label><br>
-          <select #assignedUsersSelect id="addAssignedUsers" class="lg-text-input">
-            <option *ngFor="let user of assignedUsers" [value]="user.emailAdress">{{ user.firstName }}</option>
+          <select #usersSelect id="addAssignedUsers" class="lg-text-input">
+            <option *ngFor="let user of users" [value]="user.emailAdress">{{ user.firstName }}</option>
           </select><br>
 
           <label for="addAssignedProjects">Assigned Projects:</label><br>
@@ -73,17 +73,11 @@
             <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
           </select><br>
         </form>
-        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value,taskDate.value, [taskModule.value], assignedUsers, assignedProjects)">Add</button>
+
+        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)">Add</button>
       </div>
 
-      <h2>{{assignedUsers.length}} <span *ngIf="assignedUsers.length <= 1; else userPlural">user</span>
-        <ng-template #userPlural>users</ng-template></h2>
-
-        <ul>
-          <li *ngFor="let i of assignedUsers">
-            <app-user (remove)="removeUser(i)" [user]="i"></app-user>
-          </li>
-        </ul>
+      <app-user></app-user>
 
       <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
         <ng-template #projectPlural>projects</ng-template></h2>

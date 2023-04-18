@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
-import { TaskComponent } from './task/task.component';
-import { ProjectComponent } from './project/project.component';
-import { UserComponent } from './user/user.component';
-import { TaskService } from './task.service';
-import { ProjectService } from './project.service';
-import { UserService } from './user.service';
+import { TaskComponent } from './tasks/task/task.component';
+import { ProjectComponent } from './projects/project/project.component';
+import { UserComponent } from './users/user/user.component';
+import { TaskService } from './tasks/task.service';
+import { ProjectService } from './projects/project.service';
+import { UserService } from './users/user.service';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     ProjectComponent,
-    UserComponent
+    UserComponent,
+    UserDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     TaskService,
