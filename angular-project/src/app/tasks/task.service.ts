@@ -12,8 +12,6 @@ export class TaskService {
 
   allTasks = TASKS;
 
-  constructor() {}
-
   get tasks() {
     return this.allTasks;
   }

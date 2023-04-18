@@ -11,8 +11,6 @@ export class UserService {
 
   allUsers = USERS;
 
-  constructor() { }
-
   getUsers(): Observable<User[]> {
     const users = of(USERS);
     return users;
@@ -31,16 +29,7 @@ export class UserService {
   deleteUser(user: User) {
     this.allUsers.splice(this.allUsers.indexOf(user), 1);
   }
-  setName(firstName: string, lastName: string): void {
-    firstName = firstName;
-    lastName = lastName;
-  }
-  setEmailAdress(emailAdress: string): void {
-      emailAdress = emailAdress;
-  }
-  setusedDevices(usedDevices: string[]): void {
-      usedDevices = usedDevices;
-  }
+
   logIn(userName: string, password: string): void {
       if (userName === userName && password === password) {
           console.log(`logged in as ${userName}`);

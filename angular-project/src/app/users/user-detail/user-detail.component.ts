@@ -9,4 +9,25 @@ import { User } from '../user';
 })
 export class UserDetailComponent {
   @Input() user?: User;
+
+  setName(firstName: string, lastName: string): void {
+    if (this.user == null) {
+      return;
+    }
+    this.user.firstName = firstName;
+    this.user.lastName = lastName;
+  }
+
+  setEmailAdress(emailAdress: string): void {
+    if (this.user == null) {
+      return;
+    }
+    this.user.emailAdress = emailAdress;
+  }
+  setUsedDevices(usedDevices: string[]): void {
+    if (this.user == null) {
+      return;
+    }
+    this.user.usedDevices = usedDevices;
+  }
 }

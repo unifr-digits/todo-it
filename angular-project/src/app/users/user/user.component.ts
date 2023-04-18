@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from '../user';
-import { USERS } from '../mock-users';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { UserService } from '../user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
 
   selectedUser?: User;
   users: User[] = [];

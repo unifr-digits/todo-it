@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
-import { Task } from '../tasks/task';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,6 @@ import { Task } from '../tasks/task';
 export class ProjectService {
 
   allProjects = PROJECTS;
-
-  constructor() {}
 
   get projects(){
     return this.allProjects;
