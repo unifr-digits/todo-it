@@ -32,8 +32,10 @@
 
 <ul class="projects">
   <li *ngFor="let project of projects">
-    <label [for]="project.name">{{ project.name }}</label>
-    <div>{{ project.desc }}</div>
-    <button class="btn btn-warn" (click)="deleteProject(project)">Delete</button>
+    <div class="project">
+      <label [for]="project.name">{{ project.name }}</label>
+      <div>{{ project.desc }}</div>
+      <button class="btn btn-warn" (click)="deleteProject(project)">Delete</button>
+    </div>
   </li>
 </ul>
