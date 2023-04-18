@@ -19,7 +19,7 @@ export class UserService {
     firstName: string,
     lastName: string,
     userName: string,
-    emailAdress: string,
+    emailAddress: string,
     password: string,
     usedDevices: string[]
   ) {
@@ -27,7 +27,7 @@ export class UserService {
       firstName,
       lastName,
       userName,
-      emailAdress,
+      emailAddress,
       password,
       usedDevices,
     });

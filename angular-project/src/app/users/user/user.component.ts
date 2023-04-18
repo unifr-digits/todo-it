@@ -30,11 +30,11 @@ export class UserComponent implements OnInit {
     firstName: string,
     lastName: string,
     userName: string,
-    emailAdress: string,
+    emailAddress: string,
     password: string,
     usedDevices: string[]
   ) {
-    this.userService.addUser(firstName, lastName, userName, emailAdress, password, usedDevices);
+    this.userService.addUser(firstName, lastName, userName, emailAddress, password, usedDevices);
   }
 
   deleteUser(user: User) {

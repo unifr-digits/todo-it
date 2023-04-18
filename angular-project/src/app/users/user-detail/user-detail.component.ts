@@ -18,11 +18,11 @@ export class UserDetailComponent {
     this.user.lastName = lastName;
   }
 
-  setEmailAdress(emailAdress: string): void {
+  setEmailAddress(emailAddress: string): void {
     if (this.user == null) {
       return;
     }
-    this.user.emailAdress = emailAdress;
+    this.user.emailAddress = emailAddress;
   }
   setUsedDevices(usedDevices: string[]): void {
     if (this.user == null) {
