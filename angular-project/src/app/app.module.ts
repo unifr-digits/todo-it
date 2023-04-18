@@ -13,22 +13,9 @@ import { UserService } from './users/user.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TaskComponent,
-    ProjectComponent,
-    UserComponent,
-    UserDetailComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
-  providers: [
-    TaskService,
-    ProjectService,
-    UserService
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent],
+  imports: [BrowserModule, FormsModule],
+  providers: [TaskService, ProjectService, UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

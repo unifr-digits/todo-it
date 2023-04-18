@@ -9,35 +9,45 @@ import { ProjectService } from './projects/project.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title= "ToDo-it"
+  title = 'ToDo-it';
   tasks: Task[];
   users: User[] = [];
   assignedProjects: Project[];
 
-  constructor(private taskService: TaskService, private userService: UserService, private projectService: ProjectService) {
+  constructor(
+    private taskService: TaskService,
+    private userService: UserService,
+    private projectService: ProjectService
+  ) {
     this.tasks = taskService.tasks;
     this.assignedProjects = projectService.projects;
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-    .subscribe(users => this.users = users);
+    this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  addTask(name: string, desc: string, date: string, modules: string[],users: User[], assignedProjects: Project[]) {
-    this.taskService.addTask(name, desc, date, modules,users ,assignedProjects);
+  addTask(name: string, desc: string, date: string, modules: string[], users: User[], assignedProjects: Project[]) {
+    this.taskService.addTask(name, desc, date, modules, users, assignedProjects);
     this.tasks = this.taskService.tasks;
   }
 
-  addUser(firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
-    this.userService.addUser(firstName,lastName,userName,emailAdress,password,usedDevices);
+  addUser(
+    firstName: string,
+    lastName: string,
+    userName: string,
+    emailAdress: string,
+    password: string,
+    usedDevices: string[]
+  ) {
+    this.userService.addUser(firstName, lastName, userName, emailAdress, password, usedDevices);
   }
 
-  addProject(name: string, desc: string, modules:string[]){
-    this.projectService.addProject(name,desc,modules);
+  addProject(name: string, desc: string, modules: string[]) {
+    this.projectService.addProject(name, desc, modules);
     this.assignedProjects = this.projectService.projects;
   }
 

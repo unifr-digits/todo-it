@@ -4,17 +4,16 @@ import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-
   allProjects = PROJECTS;
 
-  get projects(){
+  get projects() {
     return this.allProjects;
   }
 
-  addProject(name: string, desc: string, modules:string[]) {
+  addProject(name: string, desc: string, modules: string[]) {
     const min = 1;
     const max = 1000;
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;

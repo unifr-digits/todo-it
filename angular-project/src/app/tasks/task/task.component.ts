@@ -4,15 +4,14 @@ import { Task } from '../task';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
 })
 export class TaskComponent {
   @Input() task!: Task;
   @Output() remove = new EventEmitter<Task>();
 
-  saveTask(description: string){
-    if(!description)return;
+  saveTask(description: string) {
+    if (!description) return;
     this.task.desc = description;
   }
-
 }

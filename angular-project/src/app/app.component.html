@@ -4,99 +4,145 @@
     <title>ToDo-it</title>
   </head>
   <body>
-    <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200">
+    <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200" />
     <div class="main">
-
       <div class="user">
         <h1>Create User</h1>
-        <form (keyup.enter)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value, usedDevices.value.split(','))">
+        <form
+          (keyup.enter)="
+            addUser(
+              firstName.value,
+              lastName.value,
+              userName.value,
+              emailAddress.value,
+              password.value,
+              usedDevices.value.split(',')
+            )
+          "
+        >
           <label for="firstName">First Name:</label>
-          <input #firstName placeholder="Enter first name" class="lg-text-input" id="firstName"><br>
+          <input #firstName placeholder="Enter first name" class="lg-text-input" id="firstName" /><br />
 
           <label for="lastName">Last Name:</label>
-          <input #lastName placeholder="Enter last name" class="lg-text-input" id="lastName"><br>
+          <input #lastName placeholder="Enter last name" class="lg-text-input" id="lastName" /><br />
 
           <label for="userName">Username:</label>
-          <input #userName placeholder="Enter username" class="lg-text-input" id="userName"><br>
+          <input #userName placeholder="Enter username" class="lg-text-input" id="userName" /><br />
 
           <label for="emailAddress">Email Address:</label>
-          <input #emailAddress placeholder="Enter email address" class="lg-text-input" id="emailAddress"><br>
+          <input #emailAddress placeholder="Enter email address" class="lg-text-input" id="emailAddress" /><br />
 
           <label for="password">Password:</label>
-          <input #password placeholder="Enter password" class="lg-text-input" type="password" id="password"><br>
+          <input #password placeholder="Enter password" class="lg-text-input" type="password" id="password" /><br />
 
           <label for="usedDevices">Used Devices:</label>
-          <input #usedDevices placeholder="Enter used devices" class="lg-text-input" id="usedDevices"><br>
+          <input #usedDevices placeholder="Enter used devices" class="lg-text-input" id="usedDevices" /><br />
         </form>
 
-        <button class="btn-primary" (click)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value, usedDevices.value.split(','))">Add User</button>
+        <button
+          class="btn-primary"
+          (click)="
+            addUser(
+              firstName.value,
+              lastName.value,
+              userName.value,
+              emailAddress.value,
+              password.value,
+              usedDevices.value.split(',')
+            )
+          "
+        >
+          Add User
+        </button>
       </div>
 
       <div class="project">
         <h1>Create Project</h1>
         <form (keyup.enter)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">
           <label for="projectName">Name:</label>
-          <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName"><br>
+          <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName" /><br />
 
           <label for="projectDesc">Description:</label>
-          <input #projectDesc placeholder="Enter project description" class="lg-text-input" id="projectDesc"><br>
+          <input #projectDesc placeholder="Enter project description" class="lg-text-input" id="projectDesc" /><br />
 
           <label for="projectModules">Modules:</label>
-          <input #projectModules placeholder="Enter project modules, separated by commas" class="lg-text-input" id="projectModules"><br>
+          <input
+            #projectModules
+            placeholder="Enter project modules, separated by commas"
+            class="lg-text-input"
+            id="projectModules"
+          /><br />
         </form>
 
-        <button class="btn-primary" (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">Add Project</button>
+        <button
+          class="btn-primary"
+          (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))"
+        >
+          Add Project
+        </button>
       </div>
 
       <div class="task">
         <h1>My Task List</h1>
-        <form (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)">
-          <label for="addTaskName">Name:</label><br>
-          <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName"><br>
+        <form
+          (keyup.enter)="
+            addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)
+          "
+        >
+          <label for="addTaskName">Name:</label><br />
+          <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName" /><br />
 
-          <label for="addTaskDesc">Description:</label><br>
-          <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc"><br>
+          <label for="addTaskDesc">Description:</label><br />
+          <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc" /><br />
 
-          <label for="addTaskDate">Date:</label><br>
-          <input #taskDate type="date" id="taskDate"><br>
+          <label for="addTaskDate">Date:</label><br />
+          <input #taskDate type="date" id="taskDate" /><br />
 
-          <label for="addTaskModule">Module List:</label><br>
-          <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule"><br>
+          <label for="addTaskModule">Module List:</label><br />
+          <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule" /><br />
 
-          <label for="addAssignedUsers">Assigned Users:</label><br>
+          <label for="addAssignedUsers">Assigned Users:</label><br />
           <select #usersSelect id="addAssignedUsers" class="lg-text-input">
-            <option *ngFor="let user of users" [value]="user.emailAdress">{{ user.firstName }}</option>
-          </select><br>
+            <option *ngFor="let user of users" [value]="user.emailAdress">{{ user.firstName }}</option></select
+          ><br />
 
-          <label for="addAssignedProjects">Assigned Projects:</label><br>
+          <label for="addAssignedProjects">Assigned Projects:</label><br />
           <select #assignedProjectsSelect id="addAssignedProjects" class="lg-text-input">
-            <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option>
-          </select><br>
+            <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option></select
+          ><br />
         </form>
 
-        <button class="btn-primary" (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)">Add</button>
+        <button
+          class="btn-primary"
+          (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)"
+        >
+          Add
+        </button>
       </div>
 
       <app-user></app-user>
 
-      <h2>{{assignedProjects.length}} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
-        <ng-template #projectPlural>projects</ng-template></h2>
+      <h2>
+        {{ assignedProjects.length }} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
+        <ng-template #projectPlural>projects</ng-template>
+      </h2>
 
-        <ul>
-          <li *ngFor="let i of assignedProjects">
-            <app-project (remove)="removeProject(i)" [project]="i"></app-project>
-          </li>
-        </ul>
+      <ul>
+        <li *ngFor="let i of assignedProjects">
+          <app-project (remove)="removeProject(i)" [project]="i"></app-project>
+        </li>
+      </ul>
 
-      <h2>{{tasks.length}} <span *ngIf="tasks.length <= 1; else taskPlural">task</span>
-        <ng-template #taskPlural>tasks</ng-template></h2>
+      <h2>
+        {{ tasks.length }} <span *ngIf="tasks.length <= 1; else taskPlural">task</span>
+        <ng-template #taskPlural>tasks</ng-template>
+      </h2>
 
-        <ul>
-          <li *ngFor="let i of tasks">
-            <app-task (remove)="removeTask(i)" [task]="i"></app-task>
-          </li>
-        </ul>
-
+      <ul>
+        <li *ngFor="let i of tasks">
+          <app-task (remove)="removeTask(i)" [task]="i"></app-task>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

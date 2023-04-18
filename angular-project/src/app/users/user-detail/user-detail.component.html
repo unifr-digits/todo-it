@@ -1,10 +1,8 @@
 <div *ngIf="user">
-
-  <h2>{{user.firstName | uppercase}} Details</h2>
-  <div>lastName: {{user.lastName}}</div>
+  <h2>{{ user.firstName | uppercase }} Details</h2>
+  <div>lastName: {{ user.lastName }}</div>
   <div>
     <label for="user-firstName">User firstName: </label>
-    <input id="user-firstName" [(ngModel)]="user.firstName" placeholder="firstName">
+    <input id="user-firstName" [(ngModel)]="user.firstName" placeholder="firstName" />
   </div>
-
 </div>

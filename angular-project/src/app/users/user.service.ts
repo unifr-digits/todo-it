@@ -5,10 +5,9 @@ import { User } from './user';
 import { USERS } from './mock-users';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   allUsers = USERS;
 
   getUsers(): Observable<User[]> {
@@ -16,14 +15,21 @@ export class UserService {
     return users;
   }
 
-  addUser(firstName: string, lastName: string, userName: string, emailAdress: string, password: string, usedDevices: string[]) {
+  addUser(
+    firstName: string,
+    lastName: string,
+    userName: string,
+    emailAdress: string,
+    password: string,
+    usedDevices: string[]
+  ) {
     this.allUsers.unshift({
       firstName,
       lastName,
       userName,
       emailAdress,
       password,
-      usedDevices
+      usedDevices,
     });
   }
   deleteUser(user: User) {
@@ -31,13 +37,13 @@ export class UserService {
   }
 
   logIn(userName: string, password: string): void {
-      if (userName === userName && password === password) {
-          console.log(`logged in as ${userName}`);
-      } else {
-          console.log(`Incorrect username or password!`);
-      }
+    if (userName === userName && password === password) {
+      console.log(`logged in as ${userName}`);
+    } else {
+      console.log(`Incorrect username or password!`);
+    }
   }
   logOut(): void {
-      console.log(`logged out`);
+    console.log(`logged out`);
   }
 }
