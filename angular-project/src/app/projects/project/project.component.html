@@ -1,5 +1,12 @@
-<div class="project">
-  <label [for]="project.name">{{ project.name }}</label>
-  <label [for]="project.desc">{{ project.desc }}</label>
-  <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-</div>
+<h2>
+  {{ projects.length }} <span *ngIf="projects.length <= 1; else projectPlural">project</span>
+  <ng-template #projectPlural>projects</ng-template>
+</h2>
+
+<ul class="projects">
+  <li *ngFor="let project of projects">
+    <label [for]="project.name">{{ project.name }}</label>
+    <label [for]="project.desc">{{ project.desc }}</label>
+    <button class="btn btn-warn" (click)="deleteProject(project)">Delete</button>
+  </li>
+</ul>

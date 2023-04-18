@@ -15,23 +15,22 @@ export class AppComponent implements OnInit {
   title = 'ToDo It';
   tasks: Task[] = [];
   users: User[] = [];
-  assignedProjects: Project[];
+  projects: Project[] = [];
 
   constructor(
     private taskService: TaskService,
     private userService: UserService,
     private projectService: ProjectService
-  ) {
-    this.assignedProjects = projectService.projects;
-  }
+  ) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.users = users));
     this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
   }
 
-  addTask(name: string, desc: string, date: string, modules: string[], users: User[], assignedProjects: Project[]) {
-    this.taskService.addTask(name, desc, date, modules, users, assignedProjects);
+  addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
+    this.taskService.addTask(name, desc, date, modules, users, projects);
   }
 
   addUser(
@@ -47,15 +46,9 @@ export class AppComponent implements OnInit {
 
   addProject(name: string, desc: string, modules: string[]) {
     this.projectService.addProject(name, desc, modules);
-    this.assignedProjects = this.projectService.projects;
   }
 
   removeUser(user: User) {
     this.userService.deleteUser(user);
-  }
-
-  removeProject(project: Project) {
-    this.projectService.deleteProject(project);
-    this.assignedProjects = this.projectService.projects;
   }
 }

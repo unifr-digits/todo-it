@@ -1,17 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Project } from '../project';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
 })
-export class ProjectComponent {
-  @Input() project!: Project;
-  @Output() remove = new EventEmitter<Project>();
+export class ProjectComponent implements OnInit {
+  projects: Project[] = [];
 
-  saveProject(desc: string) {
-    if (!desc) return;
-    this.project.desc = desc;
+  constructor(private projectService: ProjectService) {}
+
+  ngOnInit(): void {
+    this.getProjects();
+  }
+
+  getProjects(): void {
+    this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
+  }
+
+  deleteProject(project: Project) {
+    this.projectService.deleteProject(project);
   }
 }

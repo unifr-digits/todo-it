@@ -85,9 +85,7 @@
       <div class="task">
         <h1>My Task List</h1>
         <form
-          (keyup.enter)="
-            addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)
-          "
+          (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
         >
           <label for="addTaskName">Name:</label><br />
           <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName" /><br />
@@ -107,32 +105,21 @@
           ><br />
 
           <label for="addAssignedProjects">Assigned Projects:</label><br />
-          <select #assignedProjectsSelect id="addAssignedProjects" class="lg-text-input">
-            <option *ngFor="let project of assignedProjects" [value]="project.id">{{ project.name }}</option></select
+          <select #projectsSelect id="addAssignedProjects" class="lg-text-input">
+            <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option></select
           ><br />
         </form>
 
         <button
           class="btn-primary"
-          (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, assignedProjects)"
+          (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
         >
           Add
         </button>
       </div>
 
       <app-user></app-user>
-
-      <h2>
-        {{ assignedProjects.length }} <span *ngIf="assignedProjects.length <= 1; else projectPlural">project</span>
-        <ng-template #projectPlural>projects</ng-template>
-      </h2>
-
-      <ul>
-        <li *ngFor="let i of assignedProjects">
-          <app-project (remove)="removeProject(i)" [project]="i"></app-project>
-        </li>
-      </ul>
-
+      <app-project></app-project>
       <app-task></app-task>
     </div>
   </body>
