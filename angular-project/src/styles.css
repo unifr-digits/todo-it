@@ -1,17 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 * {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+h1 {
+  color: #262d99;
+  font-size: 2.5rem;
+}
+
+h2,
+h3 {
+  color: #333;
+  font-weight: lighter;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
-  width: 800px;
-  margin: 50px auto;
   padding: 0 20px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.btn-primary {
+@media (min-width: 600px) {
+  body {
+    width: 70%;
+  }
+}
+
+button {
   background-color: #007bff;
   color: #fff;
   padding: 0.75rem 1rem;
@@ -22,8 +49,22 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
+button:hover {
   background-color: #0062cc;
+}
+
+button:disabled {
+  background-color: #007bff;
+  color: #fff;
+  cursor: auto;
+}
+
+.btn-warn {
+  background-color: #d93025;
+}
+
+.btn-warn:hover {
+  background-color: #c42c21;
 }
 
 label {

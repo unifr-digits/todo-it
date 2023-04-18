@@ -1,8 +1,7 @@
-<div class="task">
-  <h1>My Task List</h1>
-  <form
-    (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
-  >
+<h1>Tasks</h1>
+<div class="task-creation">
+  <h2>Create Task</h2>
+  <form (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)">
     <label for="addTaskName">Name:</label><br />
     <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName" /><br />
 
@@ -29,7 +28,8 @@
   <button
     class="btn-primary"
     (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
-  >Add Task
+  >
+    Add Task
   </button>
 </div>
 
@@ -38,29 +38,31 @@
   <ng-template #taskPlural>tasks</ng-template>
 </h2>
 
-<ul class="users">
+<ul class="tasks">
   <li *ngFor="let task of tasks">
-    <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
-    <label [for]="task.name">{{ task.name }}</label>
-    <div class="desc">{{ task.desc }}</div>
-    <div class="date">{{ task.date }}</div>
-    <div class="modules">{{ task.modules }}</div>
+    <div class="task">
+      <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
+      <label [for]="task.name">{{ task.name }}</label>
+      <div class="desc">{{ task.desc }}</div>
+      <div class="date">{{ task.date }}</div>
+      <div class="modules">{{ task.modules }}</div>
 
-    <ng-container *ngIf="task.assignedUsers">
-      <div class="assignedUsers">
-        <span *ngFor="let user of task.assignedUsers">
-          {{ user.firstName }}
-        </span>
-      </div>
-    </ng-container>
+      <ng-container *ngIf="task.assignedUsers">
+        <div class="assignedUsers">
+          <span *ngFor="let user of task.assignedUsers">
+            {{ user.firstName }}
+          </span>
+        </div>
+      </ng-container>
 
-    <ng-container *ngIf="task.assignedProjects">
-      <div class="assignedProjects">
-        <span *ngFor="let project of task.assignedProjects">
-          {{ project.name }}
-        </span>
-      </div>
-    </ng-container>
-    <button class="btn btn-warn" (click)="deleteTask(task)">Delete</button>
+      <ng-container *ngIf="task.assignedProjects">
+        <div class="assignedProjects">
+          <span *ngFor="let project of task.assignedProjects">
+            {{ project.name }}
+          </span>
+        </div>
+      </ng-container>
+      <button class="btn btn-warn" (click)="deleteTask(task)">Delete</button>
+    </div>
   </li>
 </ul>

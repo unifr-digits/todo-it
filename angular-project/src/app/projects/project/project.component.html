@@ -1,5 +1,6 @@
-<div class="project">
-  <h1>Create Project</h1>
+<h1>Projects</h1>
+<div class="project-creation">
+  <h2>Create Project</h2>
   <form (keyup.enter)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">
     <label for="projectName">Name:</label>
     <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName" /><br />
