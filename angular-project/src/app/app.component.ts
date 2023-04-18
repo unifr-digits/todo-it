@@ -33,22 +33,7 @@ export class AppComponent implements OnInit {
     this.taskService.addTask(name, desc, date, modules, users, projects);
   }
 
-  addUser(
-    firstName: string,
-    lastName: string,
-    userName: string,
-    emailAdress: string,
-    password: string,
-    usedDevices: string[]
-  ) {
-    this.userService.addUser(firstName, lastName, userName, emailAdress, password, usedDevices);
-  }
-
   addProject(name: string, desc: string, modules: string[]) {
     this.projectService.addProject(name, desc, modules);
-  }
-
-  removeUser(user: User) {
-    this.userService.deleteUser(user);
   }
 }
