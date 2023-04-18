@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { User } from './user';
 import { USERS } from './mock-users';
@@ -10,13 +11,14 @@ export class UserService {
 
   allUsers = USERS;
 
-  constructor() {}
+  constructor() { }
 
-  get users() {
-    return this.allUsers;
+  getUsers(): Observable<User[]> {
+    const users = of(USERS);
+    return users;
   }
 
-  addUser( firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
+  addUser(firstName: string, lastName: string, userName: string, emailAdress: string, password: string, usedDevices: string[]) {
     this.allUsers.unshift({
       firstName,
       lastName,

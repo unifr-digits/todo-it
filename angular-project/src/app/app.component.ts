@@ -14,23 +14,26 @@ import { ProjectService } from './projects/project.service';
 export class AppComponent {
   title= "ToDo-it"
   tasks: Task[];
-  assignedUsers: User[];
+  users: User[] = [];
   assignedProjects: Project[];
 
-  constructor(private taskService: TaskService, private userService:UserService, private projectService: ProjectService) {
+  constructor(private taskService: TaskService, private userService: UserService, private projectService: ProjectService) {
     this.tasks = taskService.tasks;
-    this.assignedUsers = userService.users;
     this.assignedProjects = projectService.projects;
   }
 
-  addTask(name: string, desc: string, id: number, date: string, modules: string[],assignedUsers: User[], assignedProjects: Project[]) {
-    this.taskService.addTask(name, desc, id, date, modules,assignedUsers ,assignedProjects);
+  ngOnInit() {
+    this.userService.getUsers()
+    .subscribe(users => this.users = users);
+  }
+
+  addTask(name: string, desc: string, id: number, date: string, modules: string[],users: User[], assignedProjects: Project[]) {
+    this.taskService.addTask(name, desc, id, date, modules,users ,assignedProjects);
     this.tasks = this.taskService.tasks;
   }
 
   addUser(firstName: string,lastName:string, userName:string, emailAdress:string, password:string, usedDevices:string[]) {
     this.userService.addUser(firstName,lastName,userName,emailAdress,password,usedDevices);
-    this.assignedUsers = this.userService.users;
   }
 
   addProject(name: string, desc: string, modules:string[]){
@@ -44,7 +47,6 @@ export class AppComponent {
   }
   removeUser(user: User) {
     this.userService.deleteUser(user);
-    this.assignedUsers= this.userService.users;
   }
 
   removeProject(project: Project) {
