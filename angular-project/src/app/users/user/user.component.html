@@ -4,14 +4,14 @@
   <h2>Create User</h2>
   <form
     (keyup.enter)="
-    addUser(
-    firstName.value,
-    lastName.value,
-    userName.value,
-    emailAddress.value,
-    password.value,
-    usedDevices.value.split(',')
-    )
+      addUser(
+        firstName.value,
+        lastName.value,
+        userName.value,
+        emailAddress.value,
+        password.value,
+        usedDevices.value.split(',')
+      )
     "
   >
     <label for="firstName">First Name:</label>
@@ -36,14 +36,14 @@
   <button
     class="btn-primary"
     (click)="
-    addUser(
-    firstName.value,
-    lastName.value,
-    userName.value,
-    emailAddress.value,
-    password.value,
-    usedDevices.value.split(',')
-    )
+      addUser(
+        firstName.value,
+        lastName.value,
+        userName.value,
+        emailAddress.value,
+        password.value,
+        usedDevices.value.split(',')
+      )
     "
   >
     Add User

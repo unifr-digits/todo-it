@@ -21,6 +21,10 @@ export class ProjectComponent implements OnInit {
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
   }
 
+  addProject(name: string, desc: string, modules: string[]) {
+    this.projectService.addProject(name, desc, modules);
+  }
+
   deleteProject(project: Project) {
     this.projectService.deleteProject(project);
   }

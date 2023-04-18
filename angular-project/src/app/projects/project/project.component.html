@@ -1,3 +1,29 @@
+<div class="project">
+  <h1>Create Project</h1>
+  <form (keyup.enter)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">
+    <label for="projectName">Name:</label>
+    <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName" /><br />
+
+    <label for="projectDesc">Description:</label>
+    <input #projectDesc placeholder="Enter project description" class="lg-text-input" id="projectDesc" /><br />
+
+    <label for="projectModules">Modules:</label>
+    <input
+      #projectModules
+      placeholder="Enter project modules, separated by commas"
+      class="lg-text-input"
+      id="projectModules"
+    /><br />
+  </form>
+
+  <button
+    class="btn-primary"
+    (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))"
+  >
+    Add Project
+  </button>
+</div>
+
 <h2>
   {{ projects.length }} <span *ngIf="projects.length <= 1; else projectPlural">project</span>
   <ng-template #projectPlural>projects</ng-template>

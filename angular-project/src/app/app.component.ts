@@ -32,8 +32,4 @@ export class AppComponent implements OnInit {
   addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
     this.taskService.addTask(name, desc, date, modules, users, projects);
   }
-
-  addProject(name: string, desc: string, modules: string[]) {
-    this.projectService.addProject(name, desc, modules);
-  }
 }
