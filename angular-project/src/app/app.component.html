@@ -1,50 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <img class="center" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200" />
-    <div class="main">
-      <div class="task">
-        <h1>My Task List</h1>
-        <form
-          (keyup.enter)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
-        >
-          <label for="addTaskName">Name:</label><br />
-          <input #taskName placeholder="add a task" class="lg-text-input" id="addTaskName" /><br />
-
-          <label for="addTaskDesc">Description:</label><br />
-          <input #taskDesc placeholder="add a description" class="lg-text-input" id="addTaskDesc" /><br />
-
-          <label for="addTaskDate">Date:</label><br />
-          <input #taskDate type="date" id="taskDate" /><br />
-
-          <label for="addTaskModule">Module List:</label><br />
-          <input #taskModule placeholder="add modules" class="lg-text-input" id="addTaskModule" /><br />
-
-          <label for="addAssignedUsers">Assigned Users:</label><br />
-          <select #usersSelect id="addAssignedUsers" class="lg-text-input">
-            <option *ngFor="let user of users" [value]="user.emailAdress">{{ user.firstName }}</option></select
-          ><br />
-
-          <label for="addAssignedProjects">Assigned Projects:</label><br />
-          <select #projectsSelect id="addAssignedProjects" class="lg-text-input">
-            <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option></select
-          ><br />
-        </form>
-
-        <button
-          class="btn-primary"
-          (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
-        >
-          Add
-        </button>
-      </div>
-
-      <app-user></app-user>
-      <app-project></app-project>
-      <app-task></app-task>
-    </div>
-  </body>
-</html>
+<img class="logo" src="assets/Todoit_logo.png" alt="ToDo-it logo" width="200" height="200" />
+<h1>{{ title }}</h1>
+<div class="main">
+  <app-user></app-user>
+  <app-project></app-project>
+  <app-task></app-task>
+</div>
