@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Task } from './task';
@@ -9,6 +9,8 @@ import { Project } from '../projects/project';
 @Injectable({ providedIn: 'root' })
 export class TaskService {
   allTasks = TASKS;
+
+  @Input() task!: Task;
 
   getTasks(): Observable<Task[]> {
     const tasks = of(TASKS);

@@ -12,11 +12,12 @@ import { ProjectService } from './projects/project.service';
 import { UserService } from './users/user.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { TeamComponent } from './teams/team/team.component';
+import { TeamService } from './teams/team.service';
 
 @NgModule({
   declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent, TeamComponent],
   imports: [BrowserModule, FormsModule],
-  providers: [TaskService, ProjectService, UserService],
+  providers: [TaskService, ProjectService, UserService, TeamService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
