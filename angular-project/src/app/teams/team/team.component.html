@@ -1,0 +1,76 @@
+<h1>Teams</h1>
+<div class="Team-creation">
+  <h2>Create Team</h2>
+  <form (keyup.enter)="addTeam(teamName.value, teamDesc.value, members, [TeamModule.value], tasks, projects)">
+    <label for="addTeamName">Name:</label><br />
+    <input #teamName placeholder="add a Team" class="lg-text-input" id="addTeamName" /><br />
+
+    <label for="addTeamDesc">Description:</label><br />
+    <input #teamDesc placeholder="add a description" class="lg-text-input" id="addTeamDesc" /><br />
+
+    <label for="addMembers">Members:</label><br />
+    <select #membersSelect id="addMembers" class="lg-text-input">
+      <option *ngFor="let member of members" [value]="member.emailAddress">{{ member.firstName }}</option></select
+    ><br />
+
+    <label for="addTeamModule">Module List:</label><br />
+    <input #TeamModule placeholder="add modules" class="lg-text-input" id="addTeamModule" /><br />
+
+    <label for="addTasks">Tasks:</label><br />
+    <select #tasksSelect id="addTasks" class="lg-text-input">
+      <option *ngFor="let task of tasks" [value]="task.id">{{task.name}}</option></select
+    ><br />
+
+    <label for="addProjects">Projects:</label><br />
+    <select #projectsSelect id="addProjects" class="lg-text-input">
+      <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option></select
+    ><br />
+  </form>
+
+  <button
+    class="btn-primary"
+    (click)="addTeam(teamName.value, teamDesc.value, members, [TeamModule.value], tasks, projects)"
+  >
+    Add Team
+  </button>
+</div>
+
+<h2>
+  {{ teams.length }} <span *ngIf="teams.length <= 1; else TeamPlural">Team</span>
+  <ng-template #TeamPlural>Teams</ng-template>
+</h2>
+
+<ul class="teams">
+    <li *ngFor="let team of teams">
+      <div class="team">
+        <label [for]="team.name">{{ team.name }}</label>
+        <div class="desc">{{ team.desc }}</div>
+        <ng-container *ngIf="team.members">
+            <div class="members">
+              <span *ngFor="let member of team.members">
+                {{ member.firstName }}
+              </span>
+            </div>
+          </ng-container>
+        <div class="modules">{{ team.modules }}</div>
+  
+        <ng-container *ngIf="team.tasks">
+          <div class="tasks">
+            <span *ngFor="let task of team.tasks">
+              {{ task.name }}
+            </span>
+          </div>
+        </ng-container>
+  
+        <ng-container *ngIf="team.projects">
+          <div class="projects">
+            <span *ngFor="let project of team.projects">
+              {{ project.name }}
+            </span>
+          </div>
+        </ng-container>
+        <button class="btn btn-warn" (click)="deleteTeam(team)">Delete</button>
+      </div>
+    </li>
+  </ul>
+  

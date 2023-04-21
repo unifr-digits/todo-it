@@ -11,9 +11,10 @@ import { TaskService } from './tasks/task.service';
 import { ProjectService } from './projects/project.service';
 import { UserService } from './users/user.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { TeamComponent } from './teams/team/team.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent],
+  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent, TeamComponent],
   imports: [BrowserModule, FormsModule],
   providers: [TaskService, ProjectService, UserService],
   bootstrap: [AppComponent],
