@@ -1,9 +1,34 @@
-<nav class="navigation">
+<div class="header">
   <img class="logo" src="assets/Todoit_logo.png" alt="ToDo It logo" width="200" height="200" />
   <div>
     <h1>{{ title }}</h1>
     <h2>To help you do it faster.</h2>
   </div>
+</div>
+
+<nav class="navigation">
+  <a class="button"
+    routerLink="/app-user"
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page">
+    Users
+  </a> |
+  <a class="button"
+    routerLink="/app-team"
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page">
+    Teams
+  </a> |
+  <a class="button" routerLink="/app-task"
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page">
+    ToDos
+  </a> |
+  <a class="button" routerLink="/app-project"
+    routerLinkActive="activebutton"
+    ariaCurrentWhenActive="page">
+    Projects
+  </a>
 </nav>
 
 <div class="main">
