@@ -14,9 +14,10 @@ import { UserService } from './users/user.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { TeamComponent } from './teams/team/team.component';
 import { TeamService } from './teams/team.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent, TeamComponent],
+  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent, TeamComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
@@ -25,6 +26,7 @@ import { TeamService } from './teams/team.service';
       { path: 'app-task', component: TaskComponent },
       { path: 'app-project', component: ProjectComponent },
       { path: '', redirectTo: '/app-task', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent },
     ]), FormsModule,
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
