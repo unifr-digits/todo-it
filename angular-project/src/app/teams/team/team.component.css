@@ -1,13 +1,12 @@
 .team {
-    display: inline-block;
-    width: 300px;
-    height: 150px;
-    margin: 1rem;
-    padding: 1rem;
-    box-sizing: border-box;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    position: relative;
-    overflow: auto;
-  }
-  
+  display: inline-block;
+  width: 300px;
+  height: 150px;
+  margin: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  position: relative;
+  overflow: auto;
+}

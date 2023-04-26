@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { TaskComponent } from './tasks/task/task.component';
@@ -15,9 +16,18 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { TeamComponent } from './teams/team/team.component';
 import { TeamService } from './teams/team.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, TaskComponent, ProjectComponent, UserComponent, UserDetailComponent, TeamComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    TaskComponent,
+    ProjectComponent,
+    UserComponent,
+    UserDetailComponent,
+    TeamComponent,
+    PageNotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
@@ -27,7 +37,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       { path: 'app-project', component: ProjectComponent },
       { path: '', redirectTo: '/app-task', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent },
-    ]), FormsModule,
+    ]),
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
-import { User } from "../users/user";
-import { Project } from "../projects/project";
-import { Task } from "../tasks/task";
+import { User } from '../users/user';
+import { Project } from '../projects/project';
+import { Task } from '../tasks/task';
 
 export interface Team {
   name: string;
@@ -8,6 +8,6 @@ export interface Team {
   id?: number;
   members: User[];
   modules: string[];
-  tasks: Task[]
-  projects: Project[]
+  tasks: Task[];
+  projects: Project[];
 }

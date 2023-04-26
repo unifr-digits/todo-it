@@ -48,8 +48,3 @@
 .task:focus-within label:first-of-type {
   color: #0d8dee;
 }
-
-.task:focus-within .btn-warn {
-  background-color: #d93025;
-  border-color: #d93025;
-}

@@ -1,12 +1,12 @@
-import { Team } from "./team";
+import { Team } from './team';
 
 export const TEAMS: Team[] = [
   {
     name: 'Unifr',
     desc: 'Team to finish the sysdev assignment',
     id: 1,
-    members:[],
-    modules: [""],
+    members: [],
+    modules: [''],
     tasks: [],
     projects: [],
   },
@@ -14,10 +14,9 @@ export const TEAMS: Team[] = [
     name: 'SpaceTeam',
     desc: 'Team to work on spaceship project',
     id: 2,
-    members:[],
-    modules: [""],
+    members: [],
+    modules: [''],
     tasks: [],
     projects: [],
   },
-
 ];

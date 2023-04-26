@@ -18,7 +18,8 @@
   </form>
 
   <button
-    class="btn-primary"
+    mat-raised-button
+    color="primary"
     (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))"
   >
     Add Project
@@ -35,7 +36,7 @@
     <div class="project">
       <label [for]="project.name">{{ project.name }}</label>
       <div>{{ project.desc }}</div>
-      <button class="btn btn-warn" (click)="deleteProject(project)">Delete</button>
+      <button mat-raised-button color="warn" (click)="deleteProject(project)">Delete</button>
     </div>
   </li>
 </ul>

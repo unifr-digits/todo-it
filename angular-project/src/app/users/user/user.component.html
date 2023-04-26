@@ -33,7 +33,8 @@
   </form>
 
   <button
-    class="btn-primary"
+    mat-raised-button
+    color="primary"
     (click)="
       addUser(
         firstName.value,
@@ -56,11 +57,17 @@
 
 <ul class="users">
   <li *ngFor="let user of users">
-    <button class="user-btn" [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
+    <button
+      mat-raised-button
+      color="secondary"
+      [class.selected]="user === selectedUser"
+      type="button"
+      (click)="onSelect(user)"
+    >
       <span class="name">{{ user.firstName }}</span>
       <span class="name"> {{ user.lastName }}</span>
     </button>
-    <button type="button" class="btn-warn" (click)="deleteUser(user)">Delete</button>
+    <button mat-raised-button color="warn" (click)="deleteUser(user)">Delete</button>
   </li>
 </ul>
 

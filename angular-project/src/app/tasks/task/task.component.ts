@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Task } from '../task';
 import { User } from '../../users/user';
@@ -19,7 +19,7 @@ export class TaskComponent implements OnInit {
   projects: Project[] = [];
 
   @Input() task!: Task;
-  editable = false
+  editable = false;
 
   constructor(
     private taskService: TaskService,
@@ -44,7 +44,7 @@ export class TaskComponent implements OnInit {
     this.taskService.deleteTask(task);
   }
 
-  saveTask(task:Task,description: string) {
+  saveTask(task: Task, description: string) {
     if (!description) return;
     this.editable = false;
     task.desc = description;

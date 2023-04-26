@@ -18,7 +18,7 @@
 
     <label for="addTasks">Tasks:</label><br />
     <select #tasksSelect id="addTasks" class="lg-text-input">
-      <option *ngFor="let task of tasks" [value]="task.id">{{task.name}}</option></select
+      <option *ngFor="let task of tasks" [value]="task.id">{{ task.name }}</option></select
     ><br />
 
     <label for="addProjects">Projects:</label><br />
@@ -28,7 +28,8 @@
   </form>
 
   <button
-    class="btn-primary"
+    mat-raised-button
+    color="primary"
     (click)="addTeam(teamName.value, teamDesc.value, members, [TeamModule.value], tasks, projects)"
   >
     Add Team
@@ -41,36 +42,35 @@
 </h2>
 
 <ul class="teams">
-    <li *ngFor="let team of teams">
-      <div class="team">
-        <label [for]="team.name">{{ team.name }}</label>
-        <div class="desc">{{ team.desc }}</div>
-        <ng-container *ngIf="team.members">
-            <div class="members">
-              <span *ngFor="let member of team.members">
-                {{ member.firstName }}
-              </span>
-            </div>
-          </ng-container>
-        <div class="modules">{{ team.modules }}</div>
-  
-        <ng-container *ngIf="team.tasks">
-          <div class="tasks">
-            <span *ngFor="let task of team.tasks">
-              {{ task.name }}
-            </span>
-          </div>
-        </ng-container>
-  
-        <ng-container *ngIf="team.projects">
-          <div class="projects">
-            <span *ngFor="let project of team.projects">
-              {{ project.name }}
-            </span>
-          </div>
-        </ng-container>
-        <button class="btn btn-warn" (click)="deleteTeam(team)">Delete</button>
-      </div>
-    </li>
-  </ul>
-  
+  <li *ngFor="let team of teams">
+    <div class="team">
+      <label [for]="team.name">{{ team.name }}</label>
+      <div class="desc">{{ team.desc }}</div>
+      <ng-container *ngIf="team.members">
+        <div class="members">
+          <span *ngFor="let member of team.members">
+            {{ member.firstName }}
+          </span>
+        </div>
+      </ng-container>
+      <div class="modules">{{ team.modules }}</div>
+
+      <ng-container *ngIf="team.tasks">
+        <div class="tasks">
+          <span *ngFor="let task of team.tasks">
+            {{ task.name }}
+          </span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="team.projects">
+        <div class="projects">
+          <span *ngFor="let project of team.projects">
+            {{ project.name }}
+          </span>
+        </div>
+      </ng-container>
+      <button mat-raised-button color="warn" (click)="deleteTeam(team)">Delete</button>
+    </div>
+  </li>
+</ul>

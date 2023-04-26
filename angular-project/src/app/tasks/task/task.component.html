@@ -26,7 +26,8 @@
   </form>
 
   <button
-    class="btn-primary"
+    mat-flat-button
+    color="primary"
     (click)="addTask(taskName.value, taskDesc.value, taskDate.value, [taskModule.value], users, projects)"
   >
     Add Task
@@ -62,19 +63,25 @@
           </span>
         </div>
       </ng-container>
-      
+
       <div class="btn-wrapper" *ngIf="!editable">
-        <button class="btn" (click)="editable = !editable">Edit</button>
-        <button class="btn btn-warn" (click)="deleteTask(task)">Delete</button>
+        <button mat-flat-button color="accent" (click)="editable = !editable">Edit</button>
+        <button mat-flat-button color="warn" (click)="deleteTask(task)">Delete</button>
       </div>
-      
+
       <!-- This section shows only if user clicks Edit button -->
       <div *ngIf="editable">
-        <input class="sm-text-input" placeholder="edit name" [value]="task.desc" #editedTask (keyup.enter)="saveTask(task,editedTask.value)">
-      
+        <input
+          class="sm-text-input"
+          placeholder="edit name"
+          [value]="task.desc"
+          #editedTask
+          (keyup.enter)="saveTask(task, editedTask.value)"
+        />
+
         <div class="btn-wrapper">
-          <button class="btn" (click)="editable = !editable">Cancel</button>
-          <button class="btn btn-save" (click)="saveTask(task,editedTask.value)">Save</button>
+          <button mat-flat-button color="accent" (click)="editable = !editable">Cancel</button>
+          <button mat-flat-button color="warn" (click)="saveTask(task, editedTask.value)">Save</button>
         </div>
       </div>
     </div>
