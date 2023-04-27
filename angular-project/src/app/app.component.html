@@ -1,3 +1,5 @@
+<!--
+TODO: We need to put this somewhere
 <div class="header">
   <img class="logo" src="assets/logo.png" alt="ToDo It logo" width="200" height="200" />
   <div>
@@ -5,25 +7,9 @@
     <h2>To help you do it faster.</h2>
   </div>
 </div>
-
-<nav class="navigation">
-  <button mat-raised-button routerLink="/app-user" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
-    Users
-  </button>
-  |
-  <button mat-raised-button routerLink="/app-team" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
-    Teams
-  </button>
-  |
-  <button mat-raised-button routerLink="/app-task" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
-    ToDos
-  </button>
-  |
-  <button mat-raised-button routerLink="/app-project" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
-    Projects
-  </button>
-</nav>
+-->
 
 <div class="main">
+  <app-navbar></app-navbar>
   <router-outlet></router-outlet>
 </div>

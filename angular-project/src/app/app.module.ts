@@ -17,6 +17,12 @@ import { TeamComponent } from './teams/team/team.component';
 import { TeamService } from './teams/team.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -27,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserDetailComponent,
     TeamComponent,
     PageNotFoundComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
   bootstrap: [AppComponent],
