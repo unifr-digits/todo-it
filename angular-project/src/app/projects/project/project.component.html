@@ -1,42 +1,19 @@
 <h1>Projects</h1>
-<div class="project-creation">
-  <h2>Create Project</h2>
-  <form (keyup.enter)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))">
-    <label for="projectName">Name:</label>
-    <input #projectName placeholder="Enter project name" class="lg-text-input" id="projectName" /><br />
-
-    <label for="projectDesc">Description:</label>
-    <input #projectDesc placeholder="Enter project description" class="lg-text-input" id="projectDesc" /><br />
-
-    <label for="projectModules">Modules:</label>
-    <input
-      #projectModules
-      placeholder="Enter project modules, separated by commas"
-      class="lg-text-input"
-      id="projectModules"
-    /><br />
-  </form>
-
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="addProject(projectName.value, projectDesc.value, projectModules.value.split(','))"
-  >
-    Add Project
-  </button>
-</div>
-
-<h2>
-  {{ projects.length }} <span *ngIf="projects.length <= 1; else projectPlural">project</span>
-  <ng-template #projectPlural>projects</ng-template>
-</h2>
-
-<ul class="projects">
   <li *ngFor="let project of projects">
     <div class="project">
       <label [for]="project.name">{{ project.name }}</label>
-      <div>{{ project.desc }}</div>
+      <div class="desc">{{ project.desc }}</div>
+      <div class="modules">{{ project.modules }}</div>
+      <ng-container *ngIf="project.tasks">
+        <div class="tasks">
+          <span *ngFor="let task of project.tasks">
+            {{ task.name }}
+          </span>
+        </div>
+      </ng-container>
       <button mat-raised-button color="warn" (click)="deleteProject(project)">Delete</button>
     </div>
   </li>
-</ul>
+<button mat-fab (click)="openDialog()" aria-label="Add">
+  <mat-icon>add</mat-icon>
+</button>

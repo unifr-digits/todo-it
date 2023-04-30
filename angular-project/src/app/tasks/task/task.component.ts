@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
 import { Task } from '../task';
 import { User } from '../../users/user';
 import { Project } from '../../projects/project';
-
 import { TaskService } from '../task.service';
 import { UserService } from '../../users/user.service';
 import { ProjectService } from '../../projects/project.service';
+import { DialogComponent } from 'src/app/tasks/dialog/dialog.component';
 
 @Component({
   selector: 'app-task',
@@ -24,7 +24,8 @@ export class TaskComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private userService: UserService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private dialog: MatDialog // Inject the MatDialog service
   ) {}
 
   ngOnInit() {
@@ -38,8 +39,18 @@ export class TaskComponent implements OnInit {
   }
 
   addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
-    this.taskService.addTask(name, desc, date, modules, users, projects);
+    const newTask: Task = {
+      name: name,
+      desc: desc,
+      date: date,
+      modules: modules,
+      assignedUsers: users,
+      assignedProjects: projects, // assign projects parameter to assignedProjects property
+      done: false
+    };
+    this.taskService.addTask(newTask);
   }
+
   deleteTask(task: Task) {
     this.taskService.deleteTask(task);
   }
@@ -48,5 +59,22 @@ export class TaskComponent implements OnInit {
     if (!description) return;
     this.editable = false;
     task.desc = description;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      data: {
+        task: this.task || { name: '', desc: '', date: '', modules: [], assignedUsers: [], assignedProjects: [] },
+        users: this.users,
+        projects: this.projects
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const { name, desc, date, modules, assignedUsers, assignedProjects } = result;
+        this.addTask(name, desc, date, modules, assignedUsers, assignedProjects);
+      }
+    });
   }
 }

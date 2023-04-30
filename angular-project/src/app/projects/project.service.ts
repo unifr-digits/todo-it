@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
+import { Task } from '../tasks/task';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class ProjectService {
     return projects;
   }
 
-  addProject(name: string, desc: string, modules: string[]) {
+  addProject(name: string, desc: string, modules: string[],tasks:Task[]) {
     const min = 1;
     const max = 1000;
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -24,7 +25,7 @@ export class ProjectService {
       desc,
       id: randomInt,
       modules,
-      tasks: [],
+      tasks,
     };
     this.allProjects.unshift(newProject);
   }

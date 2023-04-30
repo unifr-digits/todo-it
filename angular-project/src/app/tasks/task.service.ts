@@ -17,27 +17,13 @@ export class TaskService {
     return tasks;
   }
 
-  addTask(
-    name: string,
-    desc: string,
-    date: string,
-    modules: string[],
-    assignedUsers: User[],
-    assignedProjects: Project[]
-  ) {
+  addTask(task: Task) {
     const min = 1;
     const max = 100;
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
-    this.allTasks.unshift({
-      name,
-      desc,
-      id: randomInt,
-      date,
-      modules,
-      done: false,
-      assignedUsers,
-      assignedProjects,
-    });
+    task.id = randomInt;
+    task.done = false;
+    this.allTasks.unshift(task);
   }
 
   deleteTask(task: Task) {
