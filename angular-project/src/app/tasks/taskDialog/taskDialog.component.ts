@@ -8,11 +8,11 @@ import { ProjectService } from '../../projects/project.service';
 import { Task } from '../task';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  selector: 'app-tasks-dialog',
+  templateUrl: './taskDialog.component.html',
+  styleUrls: ['./taskDialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class TaskDialogComponent implements OnInit {
   taskForm!: FormGroup;
   assignedUsers: User[] = [];
   assignedProjects: Project[] = [];
@@ -21,7 +21,7 @@ export class DialogComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private projectService: ProjectService,
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<TaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {task: Task, users: User[], projects: Project[]}
   ) {}
 

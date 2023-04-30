@@ -24,11 +24,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './tasks/dialog/dialog.component';
+import { TaskDialogComponent } from './tasks/taskDialog/taskDialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ProjectDialogComponent } from './projects/projectDialog/projectDialog.component';
+import { TeamDialogComponent } from './teams/teamDialog/teamDialog.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { ProjectDialogComponent } from './projects/projectDialog/projectDialog.c
     TeamComponent,
     PageNotFoundComponent,
     NavbarComponent,
-    DialogComponent,
-    ProjectDialogComponent
+    TaskDialogComponent,
+    ProjectDialogComponent,
+    TeamDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ import { ProjectDialogComponent } from './projects/projectDialog/projectDialog.c
     MatInputModule,
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
-  entryComponents: [DialogComponent],
+  entryComponents: [TaskDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

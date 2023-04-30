@@ -6,7 +6,7 @@ import { Project } from '../../projects/project';
 import { TaskService } from '../task.service';
 import { UserService } from '../../users/user.service';
 import { ProjectService } from '../../projects/project.service';
-import { DialogComponent } from 'src/app/tasks/dialog/dialog.component';
+import { TaskDialogComponent } from '../taskDialog/taskDialog.component';
 
 @Component({
   selector: 'app-task',
@@ -62,7 +62,7 @@ export class TaskComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '500px',
       data: {
         task: this.task || { name: '', desc: '', date: '', modules: [], assignedUsers: [], assignedProjects: [] },
