@@ -46,7 +46,7 @@ export class TaskComponent implements OnInit {
       modules: modules,
       assignedUsers: users,
       assignedProjects: projects, // assign projects parameter to assignedProjects property
-      done: false
+      done: false,
     };
     this.taskService.addTask(newTask);
   }
@@ -67,7 +67,7 @@ export class TaskComponent implements OnInit {
       data: {
         task: this.task || { name: '', desc: '', date: '', modules: [], assignedUsers: [], assignedProjects: [] },
         users: this.users,
-        projects: this.projects
+        projects: this.projects,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

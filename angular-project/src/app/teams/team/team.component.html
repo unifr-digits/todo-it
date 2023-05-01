@@ -4,40 +4,39 @@
   <ng-template #TeamPlural>Teams</ng-template>
 </h2>
 
-  <li *ngFor="let team of teams">
-    <div class="team">
-      <label [for]="team.name">{{ team.name }}</label>
-      <div class="desc">{{ team.desc }}</div>
-      <ng-container *ngIf="team.members">
-        <div class="members">
-          <span *ngFor="let member of team.members">
-            {{ member.firstName }}
-          </span>
-        </div>
-      </ng-container>
-      <div class="modules">{{ team.modules }}</div>
+<li *ngFor="let team of teams">
+  <div class="team">
+    <label [for]="team.name">{{ team.name }}</label>
+    <div class="desc">{{ team.desc }}</div>
+    <ng-container *ngIf="team.members">
+      <div class="members">
+        <span *ngFor="let member of team.members">
+          {{ member.firstName }}
+        </span>
+      </div>
+    </ng-container>
+    <div class="modules">{{ team.modules }}</div>
 
-      <ng-container *ngIf="team.tasks">
-        <div class="tasks">
-          <span *ngFor="let task of team.tasks">
-            {{ task.name }}
-          </span>
-        </div>
-      </ng-container>
+    <ng-container *ngIf="team.tasks">
+      <div class="tasks">
+        <span *ngFor="let task of team.tasks">
+          {{ task.name }}
+        </span>
+      </div>
+    </ng-container>
 
-      <ng-container *ngIf="team.projects">
-        <div class="projects">
-          <span *ngFor="let project of team.projects">
-            {{ project.name }}
-          </span>
-        </div>
-      </ng-container>
-      
-      <button mat-raised-button color="warn" (click)="deleteTeam(team)">Delete</button>
-    </div>
-  </li>
+    <ng-container *ngIf="team.projects">
+      <div class="projects">
+        <span *ngFor="let project of team.projects">
+          {{ project.name }}
+        </span>
+      </div>
+    </ng-container>
 
-  <button mat-fab (click)="openDialog()" aria-label="Add">
-    <mat-icon>add</mat-icon>
-  </button>
-  
+    <button mat-raised-button color="warn" (click)="deleteTeam(team)">Delete</button>
+  </div>
+</li>
+
+<button mat-fab (click)="openDialog()" aria-label="Add">
+  <mat-icon>add</mat-icon>
+</button>

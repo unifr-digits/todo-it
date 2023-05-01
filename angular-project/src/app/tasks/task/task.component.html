@@ -4,50 +4,50 @@
   <ng-template #taskPlural>tasks</ng-template>
 </h2>
 
-  <li *ngFor="let task of tasks">
-    <div class="task">
-      <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
-      <label [for]="task.name">{{ task.name }}</label>
-      <div class="desc">{{ task.desc }}</div>
-      <div class="date">{{ task.date }}</div>
-      <div class="modules">{{ task.modules }}</div>
-      <ng-container *ngIf="task.assignedUsers">
-        <div class="assignedUsers">
-          <span *ngFor="let user of task.assignedUsers">
-            {{ user.firstName }}
-          </span>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="task.assignedProjects">
-        <div class="assignedProjects">
-          <span *ngFor="let project of task.assignedProjects">
-            {{ project.name }}
-          </span>
-        </div>
-      </ng-container>
-
-      <div class="btn-wrapper" *ngIf="!editable">
-        <button mat-flat-button color="accent" (click)="editable = !editable">Edit</button>
-        <button mat-flat-button color="warn" (click)="deleteTask(task)">Delete</button>
+<li *ngFor="let task of tasks">
+  <div class="task">
+    <input [id]="task.desc" type="checkbox" (change)="task.done = !task.done" [checked]="task.done" />
+    <label [for]="task.name">{{ task.name }}</label>
+    <div class="desc">{{ task.desc }}</div>
+    <div class="date">{{ task.date }}</div>
+    <div class="modules">{{ task.modules }}</div>
+    <ng-container *ngIf="task.assignedUsers">
+      <div class="assignedUsers">
+        <span *ngFor="let user of task.assignedUsers">
+          {{ user.firstName }}
+        </span>
       </div>
+    </ng-container>
+    <ng-container *ngIf="task.assignedProjects">
+      <div class="assignedProjects">
+        <span *ngFor="let project of task.assignedProjects">
+          {{ project.name }}
+        </span>
+      </div>
+    </ng-container>
 
-      <!-- This section shows only if user clicks Edit button -->
-      <div *ngIf="editable">
-        <input
-          class="sm-text-input"
-          placeholder="edit name"
-          [value]="task.desc"
-          #editedTask
-          (keyup.enter)="saveTask(task, editedTask.value)"
-        />
+    <div class="btn-wrapper" *ngIf="!editable">
+      <button mat-flat-button color="accent" (click)="editable = !editable">Edit</button>
+      <button mat-flat-button color="warn" (click)="deleteTask(task)">Delete</button>
+    </div>
 
-        <div class="btn-wrapper">
-          <button mat-flat-button color="accent" (click)="editable = !editable">Cancel</button>
-          <button mat-flat-button color="warn" (click)="saveTask(task, editedTask.value)">Save</button>
-        </div>
+    <!-- This section shows only if user clicks Edit button -->
+    <div *ngIf="editable">
+      <input
+        class="sm-text-input"
+        placeholder="edit name"
+        [value]="task.desc"
+        #editedTask
+        (keyup.enter)="saveTask(task, editedTask.value)"
+      />
+
+      <div class="btn-wrapper">
+        <button mat-flat-button color="accent" (click)="editable = !editable">Cancel</button>
+        <button mat-flat-button color="warn" (click)="saveTask(task, editedTask.value)">Save</button>
       </div>
     </div>
-  </li>
+  </div>
+</li>
 
 <button mat-fab (click)="openDialog()" aria-label="Add">
   <mat-icon>add</mat-icon>

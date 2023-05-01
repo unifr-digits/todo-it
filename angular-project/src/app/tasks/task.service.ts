@@ -3,8 +3,6 @@ import { Observable, of } from 'rxjs';
 
 import { Task } from './task';
 import { TASKS } from './mock-tasks';
-import { User } from '../users/user';
-import { Project } from '../projects/project';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {

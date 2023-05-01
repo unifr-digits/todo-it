@@ -16,7 +16,7 @@ export class ProjectService {
     return projects;
   }
 
-  addProject(name: string, desc: string, modules: string[],tasks:Task[]) {
+  addProject(name: string, desc: string, modules: string[], tasks: Task[]) {
     const min = 1;
     const max = 1000;
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;

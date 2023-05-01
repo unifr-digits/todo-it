@@ -53,10 +53,10 @@ export class TeamComponent implements OnInit {
     const dialogRef = this.dialog.open(TeamDialogComponent, {
       width: '500px',
       data: {
-        team:this.team || { name: '', desc: '', member:[], modules: [], tasks: [], projects: [] },
+        team: this.team || { name: '', desc: '', member: [], modules: [], tasks: [], projects: [] },
         members: this.members,
         tasks: this.tasks,
-        projects: this.projects
+        projects: this.projects,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

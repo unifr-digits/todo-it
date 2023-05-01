@@ -1,19 +1,19 @@
 <h1>Projects</h1>
-  <li *ngFor="let project of projects">
-    <div class="project">
-      <label [for]="project.name">{{ project.name }}</label>
-      <div class="desc">{{ project.desc }}</div>
-      <div class="modules">{{ project.modules }}</div>
-      <ng-container *ngIf="project.tasks">
-        <div class="tasks">
-          <span *ngFor="let task of project.tasks">
-            {{ task.name }}
-          </span>
-        </div>
-      </ng-container>
-      <button mat-raised-button color="warn" (click)="deleteProject(project)">Delete</button>
-    </div>
-  </li>
+<li *ngFor="let project of projects">
+  <div class="project">
+    <label [for]="project.name">{{ project.name }}</label>
+    <div class="desc">{{ project.desc }}</div>
+    <div class="modules">{{ project.modules }}</div>
+    <ng-container *ngIf="project.tasks">
+      <div class="tasks">
+        <span *ngFor="let task of project.tasks">
+          {{ task.name }}
+        </span>
+      </div>
+    </ng-container>
+    <button mat-raised-button color="warn" (click)="deleteProject(project)">Delete</button>
+  </div>
+</li>
 <button mat-fab (click)="openDialog()" aria-label="Add">
   <mat-icon>add</mat-icon>
 </button>

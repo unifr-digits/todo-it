@@ -13,13 +13,10 @@ import { Task } from 'src/app/tasks/task';
 })
 export class ProjectComponent implements OnInit {
   projects: Project[] = [];
-  tasks: Task[]=[];
+  tasks: Task[] = [];
   @Input() project!: Project;
 
-  constructor(
-    private projectService: ProjectService,
-    private dialog: MatDialog
-    ) {}
+  constructor(private projectService: ProjectService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -29,7 +26,7 @@ export class ProjectComponent implements OnInit {
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
   }
 
-  addProject(name: string, desc: string, modules: string[],tasks:Task[]) {
+  addProject(name: string, desc: string, modules: string[], tasks: Task[]) {
     this.projectService.addProject(name, desc, modules, tasks);
   }
 
@@ -40,13 +37,13 @@ export class ProjectComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectDialogComponent, {
       width: '500px',
       data: {
-        project: this.project|| { name: '', desc: '',modules: [], tasks: []},
-        tasks: this.tasks
+        project: this.project || { name: '', desc: '', modules: [], tasks: [] },
+        tasks: this.tasks,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const { name, desc,modules,tasks} = result;
+        const { name, desc, modules, tasks } = result;
         this.addProject(name, desc, modules, tasks);
       }
     });

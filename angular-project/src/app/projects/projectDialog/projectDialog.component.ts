@@ -8,9 +8,9 @@ import { TaskService } from 'src/app/tasks/task.service';
 @Component({
   selector: 'app-project-dialog',
   templateUrl: './projectDialog.component.html',
-  styleUrls: ['./projectDialog.component.css']
+  styleUrls: ['./projectDialog.component.css'],
 })
-export class ProjectDialogComponent implements OnInit{
+export class ProjectDialogComponent implements OnInit {
   projectForm!: FormGroup;
   tasks: Task[] = [];
 
@@ -18,8 +18,7 @@ export class ProjectDialogComponent implements OnInit{
     private taskService: TaskService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProjectDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {project: Project, tasks: Task[]}
-
+    @Inject(MAT_DIALOG_DATA) public data: { project: Project; tasks: Task[] }
   ) {}
 
   ngOnInit() {
@@ -28,7 +27,7 @@ export class ProjectDialogComponent implements OnInit{
       name: [this.data?.project?.name, [Validators.required]],
       desc: [this.data?.project?.desc, [Validators.required]],
       modules: [this.data?.project?.modules],
-      tasks: [this.data?.project?.tasks]
+      tasks: [this.data?.project?.tasks],
     });
   }
 
@@ -37,7 +36,7 @@ export class ProjectDialogComponent implements OnInit{
       return;
     }
 
-    const { name, desc,  modules, tasks } = this.projectForm.value;
+    const { name, desc, modules, tasks } = this.projectForm.value;
 
     const project: Project = {
       name,
@@ -46,7 +45,7 @@ export class ProjectDialogComponent implements OnInit{
       modules,
       tasks,
     };
-    
+
     this.dialogRef.close(project);
   }
 
