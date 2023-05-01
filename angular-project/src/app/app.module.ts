@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ProjectDialogComponent } from './projects/projectDialog/projectDialog.component';
 import { TeamDialogComponent } from './teams/teamDialog/teamDialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,12 @@ import { TeamDialogComponent } from './teams/teamDialog/teamDialog.component';
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
   entryComponents: [TaskDialogComponent],
