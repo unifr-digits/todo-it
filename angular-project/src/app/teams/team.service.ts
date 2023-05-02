@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Team } from './team';
+import { TEAMS } from './mock-teams';
 import { User } from '../users/user';
 import { Task } from '../tasks/task';
 import { Project } from '../projects/project';
@@ -16,8 +17,9 @@ export class TeamService extends Dexie {
   constructor() {
     super('teams-db');
     this.version(1).stores({
-      teams: 'name,desc,id,members,modules,tasks,projects'
+      teams: 'id, name,desc,members,modules,tasks,projects'
     });
+    this.teams.bulkAdd(TEAMS);
   }
 
   getTeams(): Observable<Dexie.Table<Team, string>> {

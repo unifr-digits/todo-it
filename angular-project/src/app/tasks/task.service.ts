@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import Dexie from 'dexie';
 
 import { Task } from './task';
+import { TASKS } from './mock-tasks';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService extends Dexie{
@@ -13,8 +14,9 @@ export class TaskService extends Dexie{
   constructor() {
     super('tasks-db');
     this.version(1).stores({
-      tasks: 'name,desc,id,date,modules,done,assignedUsers,assignedProjects'
+      tasks: 'id, name,desc, date,modules,done,assignedUsers,assignedProjects'
     });
+    this.tasks.bulkAdd(TASKS);
   }
 
   getTasks(): Observable<Dexie.Table<Task, string>> {

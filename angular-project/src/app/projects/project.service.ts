@@ -15,8 +15,9 @@ export class ProjectService extends Dexie {
 constructor() {
   super('projects-db');
   this.version(1).stores({
-    projects: 'name,desc,id,modules,tasks'
+    projects: 'id, name,desc, modules,tasks'
   });
+    this.projects.bulkAdd(PROJECTS);
 }
   getProjects(): Observable<Dexie.Table<Project, string>> {
     const projects = of(this.projects);
