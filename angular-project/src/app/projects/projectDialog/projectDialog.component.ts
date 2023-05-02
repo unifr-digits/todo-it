@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from 'src/app/tasks/task';
 import { TaskService } from 'src/app/tasks/task.service';
-import Dexie from 'dexie';
 
 @Component({
   selector: 'app-project-dialog',
@@ -13,7 +12,7 @@ import Dexie from 'dexie';
 })
 export class ProjectDialogComponent implements OnInit {
   projectForm!: FormGroup;
-  tasks: Task[]=[];
+  tasks: Task[] = [];
 
   constructor(
     private taskService: TaskService,

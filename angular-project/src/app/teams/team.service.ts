@@ -12,12 +12,12 @@ import Dexie from 'dexie';
   providedIn: 'root',
 })
 export class TeamService extends Dexie {
-  teams!: Dexie.Table<Team, string>
+  teams!: Dexie.Table<Team, string>;
 
   constructor() {
     super('teams-db');
     this.version(1).stores({
-      teams: 'id, name,desc,members,modules,tasks,projects'
+      teams: 'id, name,desc,members,modules,tasks,projects',
     });
     this.teams.bulkAdd(TEAMS);
   }
@@ -32,13 +32,13 @@ export class TeamService extends Dexie {
     const max = 100;
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
     this.teams.add({
-      name:name,
-      desc:desc,
+      name: name,
+      desc: desc,
       id: randomInt,
-      members:members,
-      modules:modules,
-      tasks:tasks,
-      projects:projects,
+      members: members,
+      modules: modules,
+      tasks: tasks,
+      projects: projects,
     });
   }
 

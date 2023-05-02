@@ -7,14 +7,14 @@ import { TaskService } from '../task.service';
 import { UserService } from '../../users/user.service';
 import { ProjectService } from '../../projects/project.service';
 import { TaskDialogComponent } from '../taskDialog/taskDialog.component';
-import Dexie from 'dexie';
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
 export class TaskComponent implements OnInit {
-  tasks: Task[]=[];
+  tasks: Task[] = [];
   users: User[] = [];
   projects: Project[] = [];
 
@@ -30,10 +30,9 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.users = users));
-    this.updateTasks()
-    this.updateProjects()
+    this.updateTasks();
+    this.updateProjects();
   }
-
 
   addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
     const newTask: Task = {
@@ -46,12 +45,11 @@ export class TaskComponent implements OnInit {
       done: false,
     };
     this.taskService.addTask(newTask);
-
   }
 
   deleteTask(task: Task) {
     this.taskService.deleteTask(task);
-    this.updateTasks()
+    this.updateTasks();
   }
 
   saveTask(task: Task, description: string) {

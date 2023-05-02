@@ -10,15 +10,15 @@ import Dexie from 'dexie';
   providedIn: 'root',
 })
 export class ProjectService extends Dexie {
-  projects!: Dexie.Table<Project, string>
+  projects!: Dexie.Table<Project, string>;
 
-constructor() {
-  super('projects-db');
-  this.version(1).stores({
-    projects: 'id, name,desc, modules,tasks'
-  });
+  constructor() {
+    super('projects-db');
+    this.version(1).stores({
+      projects: 'id, name,desc, modules,tasks',
+    });
     this.projects.bulkAdd(PROJECTS);
-}
+  }
   getProjects(): Observable<Dexie.Table<Project, string>> {
     const projects = of(this.projects);
     return projects;
@@ -36,11 +36,11 @@ constructor() {
       tasks,
     };
     this.projects.add({
-      name:newProject.name,
-      desc:newProject.desc,
-      id:newProject.id,
-      modules:newProject.modules,
-      tasks:newProject.tasks,
+      name: newProject.name,
+      desc: newProject.desc,
+      id: newProject.id,
+      modules: newProject.modules,
+      tasks: newProject.tasks,
     });
   }
 
