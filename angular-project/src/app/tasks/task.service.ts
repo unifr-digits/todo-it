@@ -1,17 +1,25 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import Dexie from 'dexie';
 
 import { Task } from './task';
 import { TASKS } from './mock-tasks';
 
 @Injectable({ providedIn: 'root' })
-export class TaskService {
-  allTasks = TASKS;
+export class TaskService extends Dexie{
+  tasks!: Dexie.Table<Task, string>
 
   @Input() task!: Task;
 
-  getTasks(): Observable<Task[]> {
-    const tasks = of(TASKS);
+  constructor() {
+    super('tasks-db');
+    this.version(1).stores({
+      tasks: 'name,desc,id,date,modules,done,assignedUsers,assignedProjects'
+    });
+  }
+
+  getTasks(): Observable<Dexie.Table<Task, string>> {
+    const tasks = of(this.tasks);
     return tasks;
   }
 
@@ -21,10 +29,23 @@ export class TaskService {
     const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
     task.id = randomInt;
     task.done = false;
-    this.allTasks.unshift(task);
+    this.tasks.add({
+      name:task.name,
+      desc:task.desc,
+      id:task.id,
+      date:task.date,
+      modules:task.modules,
+      done:task.done,
+      assignedUsers:task.assignedUsers,
+      assignedProjects:task.assignedProjects,
+    });
   }
 
   deleteTask(task: Task) {
-    this.allTasks.splice(this.allTasks.indexOf(task), 1);
+    this.tasks.delete(task.name);
+  }
+
+  async updateTasks() {
+    this.tasks = await this.tasks;
   }
 }

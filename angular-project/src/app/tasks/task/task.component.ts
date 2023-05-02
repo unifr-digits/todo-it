@@ -7,14 +7,14 @@ import { TaskService } from '../task.service';
 import { UserService } from '../../users/user.service';
 import { ProjectService } from '../../projects/project.service';
 import { TaskDialogComponent } from '../taskDialog/taskDialog.component';
-
+import Dexie from 'dexie';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
 export class TaskComponent implements OnInit {
-  tasks: Task[] = [];
+  tasks: Task[]=[];
   users: User[] = [];
   projects: Project[] = [];
 
@@ -30,13 +30,10 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.users = users));
-    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.updateTasks()
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
   }
 
-  getTasks(): void {
-    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
-  }
 
   addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
     const newTask: Task = {
@@ -49,10 +46,12 @@ export class TaskComponent implements OnInit {
       done: false,
     };
     this.taskService.addTask(newTask);
+
   }
 
   deleteTask(task: Task) {
     this.taskService.deleteTask(task);
+    this.updateTasks()
   }
 
   saveTask(task: Task, description: string) {
@@ -74,7 +73,12 @@ export class TaskComponent implements OnInit {
       if (result) {
         const { name, desc, date, modules, assignedUsers, assignedProjects } = result;
         this.addTask(name, desc, date, modules, assignedUsers, assignedProjects);
+        this.updateTasks();
       }
     });
   }
+  async updateTasks() {
+    this.tasks = await this.taskService.tasks.toArray();
+  }
+
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from 'src/app/tasks/task';
 import { TaskService } from 'src/app/tasks/task.service';
+import Dexie from 'dexie';
 
 @Component({
   selector: 'app-project-dialog',
@@ -12,7 +13,7 @@ import { TaskService } from 'src/app/tasks/task.service';
 })
 export class ProjectDialogComponent implements OnInit {
   projectForm!: FormGroup;
-  tasks: Task[] = [];
+  tasks: Task[]=[];
 
   constructor(
     private taskService: TaskService,
@@ -22,13 +23,17 @@ export class ProjectDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.updateTasks();
     this.projectForm = this.fb.group({
       name: [this.data?.project?.name, [Validators.required]],
       desc: [this.data?.project?.desc, [Validators.required]],
       modules: [this.data?.project?.modules],
       tasks: [this.data?.project?.tasks],
     });
+  }
+
+  async updateTasks() {
+    this.tasks = await this.taskService.tasks.toArray();
   }
 
   save() {

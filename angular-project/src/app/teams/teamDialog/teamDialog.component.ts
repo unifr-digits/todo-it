@@ -31,7 +31,7 @@ export class TeamDialogComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((members) => (this.members = members));
-    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.updateTasks();
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
 
     this.teamForm = this.fb.group({
@@ -42,6 +42,9 @@ export class TeamDialogComponent implements OnInit {
       tasks: [this.data?.team?.tasks],
       projects: [this.data?.team?.projects],
     });
+  }
+  async updateTasks() {
+    this.tasks = await this.taskService.tasks.toArray();
   }
 
   save() {

@@ -34,7 +34,7 @@ export class TeamComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.members = users));
-    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.updateTasks();
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
     this.teamService.getTeams().subscribe((teams) => (this.teams = teams));
   }
@@ -63,7 +63,11 @@ export class TeamComponent implements OnInit {
       if (result) {
         const { name, desc, members, modules, tasks, projects } = result;
         this.addTeam(name, desc, members, modules, tasks, projects);
+        this.updateTasks();
       }
     });
+  }
+  async updateTasks() {
+    this.tasks = await this.taskService.tasks.toArray();
   }
 }
