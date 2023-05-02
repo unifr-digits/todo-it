@@ -19,11 +19,7 @@ export class ProjectComponent implements OnInit {
   constructor(private projectService: ProjectService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getProjects();
-  }
-
-  getProjects(): void {
-    this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
+    this.updateProjects();
   }
 
   addProject(name: string, desc: string, modules: string[], tasks: Task[]) {
@@ -32,6 +28,7 @@ export class ProjectComponent implements OnInit {
 
   deleteProject(project: Project) {
     this.projectService.deleteProject(project);
+    this.updateProjects();
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(ProjectDialogComponent, {
@@ -45,7 +42,11 @@ export class ProjectComponent implements OnInit {
       if (result) {
         const { name, desc, modules, tasks } = result;
         this.addProject(name, desc, modules, tasks);
+        this.updateProjects();
       }
     });
+  }
+  async updateProjects() {
+    this.projects = await this.projectService.projects.toArray();
   }
 }

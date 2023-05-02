@@ -4,15 +4,22 @@ import { Observable, of } from 'rxjs';
 import { Project } from './project';
 import { PROJECTS } from './mock-projects';
 import { Task } from '../tasks/task';
+import Dexie from 'dexie';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectService {
-  allProjects = PROJECTS;
+export class ProjectService extends Dexie {
+  projects!: Dexie.Table<Project, string>
 
-  getProjects(): Observable<Project[]> {
-    const projects = of(PROJECTS);
+constructor() {
+  super('projects-db');
+  this.version(1).stores({
+    projects: 'name,desc,id,modules,tasks'
+  });
+}
+  getProjects(): Observable<Dexie.Table<Project, string>> {
+    const projects = of(this.projects);
     return projects;
   }
 
@@ -27,10 +34,16 @@ export class ProjectService {
       modules,
       tasks,
     };
-    this.allProjects.unshift(newProject);
+    this.projects.add({
+      name:newProject.name,
+      desc:newProject.desc,
+      id:newProject.id,
+      modules:newProject.modules,
+      tasks:newProject.tasks,
+    });
   }
 
   deleteProject(project: Project) {
-    this.allProjects.splice(this.allProjects.indexOf(project), 1);
+    this.projects.delete(project.name);
   }
 }

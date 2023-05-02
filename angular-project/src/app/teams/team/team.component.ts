@@ -35,7 +35,7 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.members = users));
     this.updateTasks();
-    this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
+    this.updateProjects();
     this.updateTeams();
   }
 
@@ -44,6 +44,7 @@ export class TeamComponent implements OnInit {
   }
   deleteTeam(team: Team) {
     this.teamService.deleteTeam(team);
+    this.updateTeams();
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(TeamDialogComponent, {
@@ -68,5 +69,8 @@ export class TeamComponent implements OnInit {
   }
   async updateTeams() {
     this.teams = await this.teamService.teams.toArray();
+  }
+  async updateProjects() {
+    this.projects = await this.projectService.projects.toArray();
   }
 }

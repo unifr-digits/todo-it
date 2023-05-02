@@ -31,7 +31,7 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.users = users));
     this.updateTasks()
-    this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
+    this.updateProjects()
   }
 
 
@@ -80,5 +80,7 @@ export class TaskComponent implements OnInit {
   async updateTasks() {
     this.tasks = await this.taskService.tasks.toArray();
   }
-
+  async updateProjects() {
+    this.projects = await this.projectService.projects.toArray();
+  }
 }

@@ -27,7 +27,7 @@ export class TaskDialogComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => (this.assignedUsers = users));
-    this.projectService.getProjects().subscribe((projects) => (this.assignedProjects = projects));
+    this.updateProjects();
 
     this.taskForm = this.fb.group({
       name: [this.data?.task?.name, [Validators.required]],
@@ -37,6 +37,9 @@ export class TaskDialogComponent implements OnInit {
       assignedUsers: [this.data?.task?.assignedUsers],
       assignedProjects: [this.data?.task?.assignedProjects],
     });
+  }
+  async updateProjects() {
+    this.assignedProjects = await this.projectService.projects.toArray();
   }
 
   save() {
