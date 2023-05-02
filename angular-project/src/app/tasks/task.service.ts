@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import Dexie from 'dexie';
 
 import { Task } from './task';
-import { TASKS } from './mock-tasks';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService extends Dexie{

@@ -36,11 +36,7 @@ export class TeamComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => (this.members = users));
     this.updateTasks();
     this.projectService.getProjects().subscribe((projects) => (this.projects = projects));
-    this.teamService.getTeams().subscribe((teams) => (this.teams = teams));
-  }
-
-  getTeams(): void {
-    this.teamService.getTeams().subscribe((teams) => (this.teams = teams));
+    this.updateTeams();
   }
 
   addTeam(name: string, desc: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
@@ -63,11 +59,14 @@ export class TeamComponent implements OnInit {
       if (result) {
         const { name, desc, members, modules, tasks, projects } = result;
         this.addTeam(name, desc, members, modules, tasks, projects);
-        this.updateTasks();
+        this.updateTeams();
       }
     });
   }
   async updateTasks() {
     this.tasks = await this.taskService.tasks.toArray();
+  }
+  async updateTeams() {
+    this.teams = await this.teamService.teams.toArray();
   }
 }
