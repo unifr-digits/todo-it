@@ -29,7 +29,12 @@ export class TeamService extends Dexie {
 
   addTeam(name: string, desc: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
     this.teams.add({
-      name, desc, members, modules, tasks, projects,
+      name,
+      desc,
+      members,
+      modules,
+      tasks,
+      projects,
     });
   }
 

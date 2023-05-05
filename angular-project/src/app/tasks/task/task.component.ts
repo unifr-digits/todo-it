@@ -35,16 +35,7 @@ export class TaskComponent implements OnInit {
   }
 
   addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
-    const newTask: Task = {
-      name: name,
-      desc: desc,
-      date: date,
-      modules: modules,
-      assignedUsers: users,
-      assignedProjects: projects, // assign projects parameter to assignedProjects property
-      done: false,
-    };
-    this.taskService.addTask(newTask);
+    this.taskService.addTask(name, desc, date, modules, false, users, projects);
   }
 
   deleteTask(task: Task) {

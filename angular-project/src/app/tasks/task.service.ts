@@ -3,47 +3,52 @@ import { Observable, of } from 'rxjs';
 import Dexie from 'dexie';
 
 import { Task } from './task';
+import { User } from '../users/user';
+import { Project } from '../projects/project';
+
 import { TASKS } from './mock-tasks';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService extends Dexie {
-  tasks!: Dexie.Table<Task, string>;
+  tasks!: Dexie.Table<Task, number>;
 
   @Input() task!: Task;
 
   constructor() {
     super('tasks-db');
     this.version(1).stores({
-      tasks: 'id, name,desc, date,modules,done,assignedUsers,assignedProjects',
+      tasks: '++id, name,desc, date, modules, done, assignedUsers, assignedProjects',
     });
     this.tasks.bulkAdd(TASKS);
   }
 
-  getTasks(): Observable<Dexie.Table<Task, string>> {
+  getTasks(): Observable<Dexie.Table<Task, number>> {
     const tasks = of(this.tasks);
     return tasks;
   }
 
-  addTask(task: Task) {
-    const min = 1;
-    const max = 100;
-    const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
-    task.id = randomInt;
-    task.done = false;
+  addTask(
+    name: string,
+    desc: string,
+    date: string,
+    modules: string[],
+    done: boolean,
+    assignedUsers: User[],
+    assignedProjects: Project[]
+  ) {
     this.tasks.add({
-      name: task.name,
-      desc: task.desc,
-      id: task.id,
-      date: task.date,
-      modules: task.modules,
-      done: task.done,
-      assignedUsers: task.assignedUsers,
-      assignedProjects: task.assignedProjects,
+      name,
+      desc,
+      date,
+      modules,
+      done,
+      assignedUsers,
+      assignedProjects,
     });
   }
 
   deleteTask(task: Task) {
-    this.tasks.delete(task.name);
+    this.tasks.delete(task?.id!);
   }
 
   async updateTasks() {
