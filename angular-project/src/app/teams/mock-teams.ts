@@ -2,18 +2,18 @@ import { Team } from './team';
 
 export const TEAMS: Team[] = [
   {
+    id: 1,
     name: 'Unifr',
     desc: 'Team to finish the sysdev assignment',
-    id: 1,
     members: [],
     modules: [''],
     tasks: [],
     projects: [],
   },
   {
+    id: 2,
     name: 'SpaceTeam',
     desc: 'Team to work on spaceship project',
-    id: 2,
     members: [],
     modules: [''],
     tasks: [],
