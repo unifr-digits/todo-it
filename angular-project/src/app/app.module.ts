@@ -31,6 +31,10 @@ import { MatInputModule } from '@angular/material/input';
 import { ProjectDialogComponent } from './projects/projectDialog/projectDialog.component';
 import { TeamDialogComponent } from './teams/teamDialog/teamDialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
+import { AppRoutingModule } from './app-routing';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -45,17 +49,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     TaskDialogComponent,
     ProjectDialogComponent,
     TeamDialogComponent,
+    UserLoginComponent,
+    UserSignupComponent,
   ],
   imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-      { path: 'app-user', component: UserComponent },
-      { path: 'app-team', component: TeamComponent },
-      { path: 'app-task', component: TaskComponent },
-      { path: 'app-project', component: ProjectComponent },
-      { path: '', redirectTo: '/app-task', pathMatch: 'full' },
-      { path: '**', component: PageNotFoundComponent },
-    ]),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -76,6 +75,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    HttpClientModule,
   ],
   providers: [TaskService, ProjectService, UserService, TeamService],
   entryComponents: [TaskDialogComponent],
