@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-12 col-md-8">
-      <p class="lead">Not a member? Please
+    <div class="box">
+      <h2 class="lead">Not a member? Please
         <a routerLink="/signup">sing up</a> first
-      </p>
+      </h2>
       <form (ngSubmit)="onLoginSubmit()">
         <div role="alert" *ngIf="formError" class="alert alert-danger">
           {{ formError }}
@@ -19,8 +19,7 @@
            name="password" placeholder="e.g 12+ alphanumerics"
           [(ngModel)]="credentials.password">
         </div>
-        <button type="submit" role="button" class="btn btn-default">
-        Login</button>
+        <button mat-raised-button color="primary">login</button>
       </form>
     </div>
   </div>
