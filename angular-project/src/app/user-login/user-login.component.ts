@@ -5,42 +5,39 @@ import { UserAuthService } from '../user-auth.service';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit {
-
   public formError: string = '';
 
   public pageContent = {
     header: {
       title: 'User Login',
-      strapline: ''
+      strapline: '',
     },
-    sidebar: ''
+    sidebar: '',
   };
 
-  constructor(
-    private router: Router,
-    private userAuthService: UserAuthService
-  ) { }
+  constructor(private router: Router, private userAuthService: UserAuthService) {}
 
   public credentials = {
     email: '',
-    password: ''
+    password: '',
   };
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public onLoginSubmit(): void {
     this.formError = '';
     if (!this.credentials.email || !this.credentials.password) {
       this.formError = 'Please fill out the e-mail and password fields';
     } else {
-      this.userAuthService.login(this.credentials.email, this.credentials.password)
-        .then( () => this.router.navigateByUrl('/'))
-        .catch( (error) => { this.formError = error.message });
+      this.userAuthService
+        .login(this.credentials.email, this.credentials.password)
+        .then(() => this.router.navigateByUrl('/'))
+        .catch((error) => {
+          this.formError = error.message;
+        });
     }
   }
-
 }

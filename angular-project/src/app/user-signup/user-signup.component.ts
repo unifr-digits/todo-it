@@ -5,47 +5,40 @@ import { UserAuthService } from '../user-auth.service';
 @Component({
   selector: 'app-user-signup',
   templateUrl: './user-signup.component.html',
-  styleUrls: ['./user-signup.component.css']
+  styleUrls: ['./user-signup.component.css'],
 })
 export class UserSignupComponent implements OnInit {
-
   public formError: string = '';
 
   public pageContent = {
     header: {
       title: 'Create account',
-      strapline: ''
+      strapline: '',
     },
-    sidebar: ''
+    sidebar: '',
   };
 
-  constructor(
-    private router: Router,
-    private userAuthService: UserAuthService
-  ) { }
+  constructor(private router: Router, private userAuthService: UserAuthService) {}
 
   public credentials = {
     email: '',
     password: '',
-    name: ''
+    name: '',
   };
 
-  ngOnInit() {
-  }
-  
+  ngOnInit() {}
+
   public onSignupSubmit(): void {
     this.formError = '';
-    if (
-      !this.credentials.name ||
-      !this.credentials.email ||
-      !this.credentials.password
-    ) {
+    if (!this.credentials.name || !this.credentials.email || !this.credentials.password) {
       this.formError = 'All fields are required for signing up';
     } else {
-      this.userAuthService.signup(this.credentials.email, this.credentials.password, this.credentials.name)
+      this.userAuthService
+        .signup(this.credentials.email, this.credentials.password, this.credentials.name)
         .then(() => this.router.navigateByUrl('/login'))
-        .catch( (error) => { this.formError = error.message });
+        .catch((error) => {
+          this.formError = error.message;
+        });
     }
   }
-
 }
