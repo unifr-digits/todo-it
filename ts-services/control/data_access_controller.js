@@ -32,7 +32,6 @@ class DataAccessController {
         });
     }
 }
-exports.DataAccessController = DataAccessController;
 DataAccessController.pool = new pg_1.Pool({
     user: environment_prod_1.environment.db_user,
     host: environment_prod_1.environment.db_host,
@@ -41,3 +40,4 @@ DataAccessController.pool = new pg_1.Pool({
     port: environment_prod_1.environment.db_port,
     statement_timeout: 2000
 });
+exports.DataAccessController = DataAccessController;

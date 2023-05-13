@@ -105,8 +105,8 @@ dist
 
 # db access
 environments/*
-./key.pem
-./cert.pem
+key.pem
+cert.pem
 environment.js
 environment.ts
 environment.prod.js
