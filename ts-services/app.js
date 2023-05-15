@@ -33,7 +33,7 @@ const fs_1 = __importDefault(require("fs"));
 const https_1 = __importDefault(require("https"));
 const environment_prod_1 = require("./environments/environment.prod");
 const UserService = __importStar(require("./routes/user_service"));
-const ItemService = __importStar(require("./routes/task_service"));
+const TaskService = __importStar(require("./routes/task_service"));
 const SERVICE_PORT = environment_prod_1.environment.service_port;
 class Services {
     constructor() {
@@ -49,7 +49,7 @@ class Services {
         };
         this.app.use((0, cors_1.default)(corsOptions));
         this.app.use(`/`, UserService.router);
-        this.app.use(`/`, ItemService.router);
+        this.app.use(`/`, TaskService.router);
         //this.server = http.createServer(this.app);
         // uncomment to use https:
         this.server = https_1.default.createServer(this.credentials, this.app);

@@ -7,7 +7,7 @@ import https from "https";
 import { environment } from "./environments/environment.prod";
 
 import * as UserService from "./routes/user_service";
-import * as ItemService from "./routes/task_service";
+import * as TaskService from "./routes/task_service";
 
 const SERVICE_PORT = environment.service_port;
 
@@ -33,7 +33,7 @@ class Services {
         this.app.use(cors(corsOptions));
 
         this.app.use(`/`, UserService.router);
-        this.app.use(`/`, ItemService.router);
+        this.app.use(`/`, TaskService.router);
         
         //this.server = http.createServer(this.app);
         // uncomment to use https:
