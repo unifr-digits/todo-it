@@ -110,3 +110,5 @@ environment.prod.js
 environment.prod.ts
 environment.packaged.js
 environment.packaged.ts
+key.pem
+cert.pem

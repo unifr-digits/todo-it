@@ -9,13 +9,13 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 
 const routes: Routes = [
-  { path: 'app-user', component: UserComponent },
-  { path: 'app-team', component: TeamComponent },
-  { path: 'app-task', component: TaskComponent },
-  { path: 'app-project', component: ProjectComponent },
+  { path: 'users', component: UserComponent },
+  { path: 'teams', component: TeamComponent },
+  { path: 'tasks', component: TaskComponent },
+  { path: 'projects', component: ProjectComponent },
   { path: 'signup', component: UserSignupComponent },
   { path: 'login', component: UserLoginComponent },
-  { path: '', redirectTo: '/app-task', pathMatch: 'full' },
+  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 

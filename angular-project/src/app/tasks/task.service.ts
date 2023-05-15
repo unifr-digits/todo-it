@@ -6,8 +6,6 @@ import { Task } from './task';
 import { User } from '../users/user';
 import { Project } from '../projects/project';
 
-import { TASKS } from './mock-tasks';
-
 @Injectable({ providedIn: 'root' })
 export class TaskService extends Dexie {
   tasks!: Dexie.Table<Task, number>;
@@ -17,9 +15,8 @@ export class TaskService extends Dexie {
   constructor() {
     super('tasks-db');
     this.version(1).stores({
-      tasks: '++id, name,desc, date, modules, done, assignedUsers, assignedProjects',
+      tasks: '++task_id, name,desc, date, modules, done, assignedUsers, assignedProjects',
     });
-    this.tasks.bulkAdd(TASKS);
   }
 
   getTasks(): Observable<Dexie.Table<Task, number>> {
@@ -48,7 +45,7 @@ export class TaskService extends Dexie {
   }
 
   deleteTask(task: Task) {
-    this.tasks.delete(task?.id!);
+    this.tasks.delete(task?.task_id!);
   }
 
   async updateTasks() {

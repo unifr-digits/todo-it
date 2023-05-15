@@ -52,15 +52,13 @@ export class TaskDialogComponent implements OnInit {
     const task: Task = {
       name,
       desc,
-      id: this.data.task.id,
+      task_id: this.data.task.task_id,
       date,
       modules,
       done: false,
       assignedUsers,
       assignedProjects,
     };
-    console.log(assignedProjects);
-
     this.dialogRef.close(task);
   }
 

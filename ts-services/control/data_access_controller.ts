@@ -19,7 +19,7 @@ export class DataAccessController {
     static async createDataSchema() : Promise<void> {
         let statements = [
             "CREATE TABLE IF NOT EXISTS users (user_id serial, email text UNIQUE, name text, password_hash text, PRIMARY KEY (user_id))",
-            "CREATE TABLE IF NOT EXISTS items (item_id uuid, title text, is_active bool, user_id int, PRIMARY KEY (item_id), FOREIGN KEY (user_id) REFERENCES users(user_id))"
+            "CREATE TABLE IF NOT EXISTS tasks (task_id uuid, name text, done bool, user_id int, PRIMARY KEY (item_id), FOREIGN KEY (user_id) REFERENCES users(user_id))"
         ];
         for (let s of statements) {
             let results = await DataAccessController.pool.query(s);

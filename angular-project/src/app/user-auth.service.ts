@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { interval, take, lastValueFrom } from 'rxjs';
 
-const API_BASE_URL = 'https://127.0.0.1:52409/api/v1/';
+const API_BASE_URL = 'https://127.0.0.1:52439/api/v1/';
 
 @Injectable({
   providedIn: 'root',

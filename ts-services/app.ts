@@ -7,7 +7,7 @@ import https from "https";
 import { environment } from "./environments/environment.prod";
 
 import * as UserService from "./routes/user_service";
-import * as ItemService from "./routes/item_service";
+import * as ItemService from "./routes/task_service";
 
 const SERVICE_PORT = environment.service_port;
 

@@ -33,7 +33,7 @@ const fs_1 = __importDefault(require("fs"));
 const https_1 = __importDefault(require("https"));
 const environment_prod_1 = require("./environments/environment.prod");
 const UserService = __importStar(require("./routes/user_service"));
-const ItemService = __importStar(require("./routes/item_service"));
+const ItemService = __importStar(require("./routes/task_service"));
 const SERVICE_PORT = environment_prod_1.environment.service_port;
 class Services {
     constructor() {

@@ -8,7 +8,7 @@ export const PROJECTS: Project[] = [
     modules: ['Module 1', 'Module 2'],
     tasks: [
       {
-        id: 1,
+        task_id: 1,
         name: 'Task 1',
         desc: 'This is the description of Task 1',
         date: '2023-03-03',
@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     modules: ['Module 1', 'Module 2'],
     tasks: [
       {
-        id: 1,
+        task_id: 1,
         name: 'Task 1',
         desc: 'This is the description of Task 1',
         date: '2023-03-03',
