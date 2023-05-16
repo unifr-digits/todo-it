@@ -4,7 +4,8 @@
   "description": "TypeScript demo for services with user authentication and access to PostgreSQL",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && node app.js"
+    "start": "tsc && node app.js",
+    "clean": "tsc --build --clean"
   },
   "author": "Felix Härer",
   "license": "MIT",
