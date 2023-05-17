@@ -1,6 +1,6 @@
 import { Task } from '../tasks/task';
 export interface Project {
-  id?: number;
+  project_id?: number;
   name: string;
   desc: string;
   modules: string[];

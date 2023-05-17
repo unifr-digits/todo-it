@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../user-auth.service';
+import { SyncService } from '../sync.service';
 
 @Component({
   selector: 'app-user-login',
@@ -37,7 +38,7 @@ export class UserLoginComponent implements OnInit {
         .then(() => this.router.navigateByUrl('/app'))
         .catch((error) => {
           this.formError = error.message;
-        });
+        });    
     }
   }
 }

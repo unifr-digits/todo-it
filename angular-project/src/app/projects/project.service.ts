@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Project } from './project';
-import { PROJECTS } from './mock-projects';
 import { Task } from '../tasks/task';
 import Dexie from 'dexie';
 
@@ -15,9 +14,8 @@ export class ProjectService extends Dexie {
   constructor() {
     super('projects-db');
     this.version(1).stores({
-      projects: '++id, name, desc, modules, tasks',
+      projects: '++project_id, name, desc, modules, tasks',
     });
-    this.projects.bulkAdd(PROJECTS);
   }
 
   getProjects(): Observable<Dexie.Table<Project, number>> {
@@ -35,6 +33,6 @@ export class ProjectService extends Dexie {
   }
 
   deleteProject(project: Project) {
-    this.projects.delete(project?.id!);
+    this.projects.delete(project?.project_id!);
   }
 }

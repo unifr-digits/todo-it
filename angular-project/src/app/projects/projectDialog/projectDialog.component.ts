@@ -45,7 +45,7 @@ export class ProjectDialogComponent implements OnInit {
     const project: Project = {
       name,
       desc,
-      id: this.data.project.id,
+      project_id: this.data.project.project_id,
       modules,
       tasks,
     };

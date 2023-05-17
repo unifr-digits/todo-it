@@ -8,6 +8,7 @@ import { environment } from "./environments/environment.prod";
 
 import * as UserService from "./routes/user_service";
 import * as TaskService from "./routes/task_service";
+import * as ProjectService from "./routes/project_service";
 
 const SERVICE_PORT = environment.service_port;
 
@@ -34,6 +35,7 @@ class Services {
 
         this.app.use(`/`, UserService.router);
         this.app.use(`/`, TaskService.router);
+        this.app.use(`/`, ProjectService.router);
         
         //this.server = http.createServer(this.app);
         // uncomment to use https:
