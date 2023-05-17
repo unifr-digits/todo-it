@@ -6,6 +6,7 @@ import { TaskService } from './tasks/task.service';
 import { TeamService } from './teams/team.service';
 import { UserAuthService } from './user-auth.service';
 import { Task } from './tasks/task';
+import { Team } from './teams/team';
 import { ProjectService } from './projects/project.service';
 import { Project } from './projects/project';
 
@@ -75,7 +76,7 @@ export class SyncService {
     }
 
     for (let team of teams) {
-      let object = { "team_id": team.team_id, "name": team.name, "desc": team.description }
+      let object = { "team_id": team.team_id, "name": team.name, "description": team.description }
       console.log(object);
 
       try {
@@ -91,6 +92,7 @@ export class SyncService {
           console.log(error.error);
         }
       }
+    }
 
       for (let project of projects) {
         let object = { "project_id": project.project_id, "name": project.name}
@@ -127,11 +129,17 @@ export class SyncService {
       let newProjects: any;
       newProjects = await this.httpClient.get<Project[]>(API_BASE_URL + 'projects', httpOptions).toPromise();
 
+      let newTeams: any;
+      newTeams = await this.httpClient.get<Team[]>(API_BASE_URL + 'teams', httpOptions).toPromise();
+
       console.log(newTasks);
       this.taskService.tasks.bulkAdd(newTasks);
 
       console.log(newProjects);
       this.projectService.projects.bulkAdd(newProjects);
+
+      console.log(newTeams);
+      this.teamService.teams.bulkAdd(newTeams);
 
       this.subject.next();
 
