@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnInit {
     } else {
       this.userAuthService
         .login(this.credentials.email, this.credentials.password)
-        .then(() => this.router.navigateByUrl('/'))
+        .then(() => this.router.navigateByUrl('/app'))
         .catch((error) => {
           this.formError = error.message;
         });
