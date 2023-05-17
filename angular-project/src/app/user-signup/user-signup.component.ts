@@ -31,7 +31,7 @@ export class UserSignupComponent implements OnInit {
   public onSignupSubmit(): void {
     this.formError = '';
     if (!this.credentials.name || !this.credentials.email || !this.credentials.password) {
-      this.formError = 'All fields are required for signing up';
+      this.formError = 'All fields are required for signing up.';
     } else {
       this.userAuthService
         .signup(this.credentials.email, this.credentials.password, this.credentials.name)
