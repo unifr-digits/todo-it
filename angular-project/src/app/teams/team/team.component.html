@@ -7,7 +7,7 @@
 <li *ngFor="let team of teams">
   <div class="team">
     <label [for]="team.name">{{ team.name }}</label>
-    <div class="desc">{{ team.desc }}</div>
+    <div class="desc">{{ team.description }}</div>
     <ng-container *ngIf="team.members">
       <div class="members">
         <span *ngFor="let member of team.members">

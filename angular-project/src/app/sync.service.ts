@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 import { TaskService } from './tasks/task.service';
+import { TeamService } from './teams/team.service';
 import { UserAuthService } from './user-auth.service';
 import { Task } from './tasks/task';
 
@@ -16,8 +17,9 @@ export class SyncService {
   onSyncFinished: Observable<void> = this.subject;
 
   constructor(
-    private readonly taskService: TaskService, 
-    private readonly userAuthService: UserAuthService, 
+    private readonly taskService: TaskService,
+    private readonly teamService: TeamService,
+    private readonly userAuthService: UserAuthService,
     private readonly httpClient: HttpClient) {}
 
   async sync() : Promise<string> {
@@ -42,20 +44,20 @@ export class SyncService {
   }
 
   async sendPostRequests(httpOptions: any) : Promise<string> {
-  
+
     const tasks = await this.taskService.tasks.toArray();
 
     console.log("Sending POST requests ...");
     let errorMessage = "";
-  
+
     for (let task of tasks) {
       let object = { "task_id": task.task_id, "name": task.name, "done": task.done}
       console.log(object);
-  
+
       try {
         let response: any;
         response = await this.httpClient.post(API_BASE_URL + 'tasks', object, httpOptions).toPromise();
-        
+
       } catch(error) {
         // when trying to add an already existing task, a duplicate key error occurs - issue PUT request in this case
         if (error.error.startsWith("error: duplicate key value")) {
@@ -67,11 +69,32 @@ export class SyncService {
       }
     }
 
+    const teams = await this.teamService.teams.toArray();
+
+    for (let team of teams) {
+      let object = { "team_id": team.team_id, "name": team.name, "desc": team.description }
+      console.log(object);
+
+      try {
+        let response: any;
+        response = await this.httpClient.post(API_BASE_URL + 'teams', object, httpOptions).toPromise();
+
+      } catch(error) {
+        // when trying to add an already existing team, a duplicate key error occurs - issue PUT request in this case
+        if (error.error.startsWith("error: duplicate key value")) {
+          await this.httpClient.put(API_BASE_URL + 'teams/' + team.team_id, object, httpOptions).toPromise();
+        } else {
+          errorMessage = error.error;
+          console.log(error.error);
+        }
+      }
+    }
+
     return errorMessage;
   }
-  
+
   async sendGetRequest(httpOptions: any) : Promise<string> {
-    
+
     console.log("Sending GET request ...");
     let errorMessage = "";
 
@@ -92,9 +115,9 @@ export class SyncService {
 
     return errorMessage;
   }
-  
+
   getStatusMessage(errorMessage: string) : string{
-    
+
     let date = new Date();
     let timestamp = date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0') + ":" + date.getSeconds().toString().padStart(2, '0');
 

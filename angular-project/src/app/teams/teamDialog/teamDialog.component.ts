@@ -36,7 +36,7 @@ export class TeamDialogComponent implements OnInit {
 
     this.teamForm = this.fb.group({
       name: [this.data?.team?.name, [Validators.required]],
-      desc: [this.data?.team?.desc, [Validators.required]],
+      description: [this.data?.team?.description, [Validators.required]],
       members: [this.data?.team?.members],
       modules: [this.data?.team?.modules],
       tasks: [this.data?.team?.tasks],
@@ -55,12 +55,12 @@ export class TeamDialogComponent implements OnInit {
       return;
     }
 
-    const { name, desc, members, modules, tasks, projects } = this.teamForm.value;
+    const { name, description, members, modules, tasks, projects } = this.teamForm.value;
 
     const team: Team = {
       name,
-      desc,
-      id: this.data.team.id,
+      description,
+      team_id: this.data.team.team_id,
       members,
       modules,
       tasks,

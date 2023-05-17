@@ -17,9 +17,8 @@ export class TeamService extends Dexie {
   constructor() {
     super('teams-db');
     this.version(1).stores({
-      teams: 'id++, name,desc,members,modules,tasks,projects',
+      teams: 'team_id++, name,description,members,modules,tasks,projects',
     });
-    this.teams.bulkAdd(TEAMS);
   }
 
   getTeams(): Observable<Dexie.Table<Team, number>> {
@@ -27,10 +26,10 @@ export class TeamService extends Dexie {
     return teams;
   }
 
-  addTeam(name: string, desc: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
+  addTeam(name: string, description: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
     this.teams.add({
       name,
-      desc,
+      description,
       members,
       modules,
       tasks,
@@ -39,6 +38,6 @@ export class TeamService extends Dexie {
   }
 
   deleteTeam(team: Team) {
-    this.teams.delete(team?.id!);
+    this.teams.delete(team?.team_id!);
   }
 }

@@ -3,9 +3,9 @@ import { Project } from '../projects/project';
 import { Task } from '../tasks/task';
 
 export interface Team {
-  id?: number;
+  team_id?: number;
   name: string;
-  desc: string;
+  description: string;
   members: User[];
   modules: string[];
   tasks: Task[];
