@@ -6,6 +6,8 @@ import { TaskService } from './tasks/task.service';
 import { TeamService } from './teams/team.service';
 import { UserAuthService } from './user-auth.service';
 import { Task } from './tasks/task';
+import { ProjectService } from './projects/project.service';
+import { Project } from './projects/project';
 
 const API_BASE_URL = "https://127.0.0.1:52439/api/v1/";
 
@@ -19,6 +21,7 @@ export class SyncService {
   constructor(
     private readonly taskService: TaskService,
     private readonly teamService: TeamService,
+    private readonly projectService: ProjectService,
     private readonly userAuthService: UserAuthService,
     private readonly httpClient: HttpClient) {}
 
@@ -46,6 +49,8 @@ export class SyncService {
   async sendPostRequests(httpOptions: any) : Promise<string> {
 
     const tasks = await this.taskService.tasks.toArray();
+    const teams = await this.teamService.teams.toArray();
+    const projects = await this.projectService.projects.toArray();
 
     console.log("Sending POST requests ...");
     let errorMessage = "";
@@ -69,8 +74,6 @@ export class SyncService {
       }
     }
 
-    const teams = await this.teamService.teams.toArray();
-
     for (let team of teams) {
       let object = { "team_id": team.team_id, "name": team.name, "desc": team.description }
       console.log(object);
@@ -88,12 +91,30 @@ export class SyncService {
           console.log(error.error);
         }
       }
+
+      for (let project of projects) {
+        let object = { "project_id": project.project_id, "name": project.name}
+        console.log(object);
+
+        try {
+          let response: any;
+          response = await this.httpClient.post(API_BASE_URL + 'projects', object, httpOptions).toPromise();
+
+        } catch(error) {
+          // when trying to add an already existing project, a duplicate key error occurs - issue PUT request in this case
+          if (error.error.startsWith("error: duplicate key value")) {
+            await this.httpClient.put(API_BASE_URL + 'projects/' + project.project_id, object, httpOptions).toPromise();
+          } else {
+            errorMessage = error.error;
+            console.log(error.error);
+          }
+        }
+      }
+
+      return errorMessage;
     }
 
-    return errorMessage;
-  }
-
-  async sendGetRequest(httpOptions: any) : Promise<string> {
+    async sendGetRequest(httpOptions: any) : Promise<string> {
 
     console.log("Sending GET request ...");
     let errorMessage = "";
@@ -103,8 +124,14 @@ export class SyncService {
       let newTasks: any;
       newTasks = await this.httpClient.get<Task[]>(API_BASE_URL + 'tasks', httpOptions).toPromise();
 
+      let newProjects: any;
+      newProjects = await this.httpClient.get<Project[]>(API_BASE_URL + 'projects', httpOptions).toPromise();
+
       console.log(newTasks);
-      this.taskService.tasks.bulkPut(newTasks);
+      this.taskService.tasks.bulkAdd(newTasks);
+
+      console.log(newProjects);
+      this.projectService.projects.bulkAdd(newProjects);
 
       this.subject.next();
 
