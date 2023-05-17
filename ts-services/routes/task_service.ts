@@ -109,7 +109,7 @@ router.get(PATH_PREFIX + "tasks/:id", (req, res) => {
 router.put(PATH_PREFIX + "tasks/:id", (req, res) => {
     const { id } = req.params;
     const {task_id, name, done } = req.body;
-    console.log(req.method, req.url, id, name, done);
+    console.log(req.method, req.url, task_id, name, done);
     console.log(req.headers);
 
     let token_data;
@@ -121,7 +121,7 @@ router.put(PATH_PREFIX + "tasks/:id", (req, res) => {
         return;
     }
 
-    if (!(id != null && name != null && done!= null )) {
+    if (!(task_id != null && name != null && done!= null )) {
         res.status(400).send("Missing input values");
         return;
     }

@@ -6,7 +6,7 @@ import { TaskService } from './tasks/task.service';
 import { UserAuthService } from './user-auth.service';
 import { Task } from './tasks/task';
 
-const API_BASE_URL = "https://127.0.0.1:52409/api/v1/";
+const API_BASE_URL = "https://127.0.0.1:52439/api/v1/";
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +47,7 @@ export class SyncService {
 
     console.log("Sending POST requests ...");
     let errorMessage = "";
-
+  
     for (let task of tasks) {
       let object = { "task_id": task.task_id, "name": task.name, "done": task.done}
       console.log(object);

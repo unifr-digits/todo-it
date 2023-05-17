@@ -32,7 +32,7 @@ class TaskDataController extends data_access_controller_1.DataAccessController {
             if (typeof results.rows !== 'undefined' && results.rows.length > 0) {
                 for (let row of results.rows) {
                     let task = new task_1.Task();
-                    task.task_id = row.tas_id;
+                    task.task_id = row.task_id;
                     task.name = row.name;
                     task.done = row.done;
                     tasks.push(task);
@@ -48,7 +48,7 @@ class TaskDataController extends data_access_controller_1.DataAccessController {
             // return result, ID is unique
             if (typeof results.rows !== 'undefined' && results.rows.length > 0) {
                 let task = new task_1.Task();
-                task.task_id = results.rows[0].id;
+                task.task_id = results.rows[0].task_id;
                 task.name = results.rows[0].name;
                 task.done = results.rows[0].done;
                 return task;

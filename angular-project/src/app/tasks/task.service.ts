@@ -15,7 +15,7 @@ export class TaskService extends Dexie {
   constructor() {
     super('tasks-db');
     this.version(1).stores({
-      tasks: '++task_id, name,desc, date, modules, done, assignedUsers, assignedProjects',
+      tasks: '++task_id, name, desc, date, modules, done, assignedUsers, assignedProjects',
     });
   }
 
