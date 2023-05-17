@@ -35,6 +35,7 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { AppRoutingModule } from './app-routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home/home.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HomeComponent } from './home/home/home.component';
     UserLoginComponent,
     UserSignupComponent,
     HomeComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

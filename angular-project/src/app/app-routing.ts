@@ -10,6 +10,7 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { HomeComponent } from './home/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   // the components for the app need their own route with navigation bar
   { path: 'app', component: NavbarComponent,
     children: [
+      { path: 'profile', component: UserProfileComponent },
       { path: 'users', component: UserComponent },
       { path: 'teams', component: TeamComponent },
       { path: 'tasks', component: TaskComponent },
