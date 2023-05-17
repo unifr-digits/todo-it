@@ -1,6 +1,6 @@
 <div class="row">
   <div class="box">
-    <h2 class="lead">Not a member? Please <a routerLink="/signup">sign up</a> first</h2>
+    <h2>Welcome back!</h2>
     <form (ngSubmit)="onLoginSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger">
         {{ formError }}
@@ -12,7 +12,6 @@
           class="form-control"
           id="email"
           name="email"
-          placeholder="Enter email address"
           [(ngModel)]="credentials.email"
         />
       </div>
@@ -23,10 +22,10 @@
           class="form-control"
           id="password"
           name="password"
-          placeholder="e.g 12+ alphanumerics"
           [(ngModel)]="credentials.password"
         />
       </div>
+      <p>New to To-do it? <a routerLink="/signup">create an account</a>.</p>
       <button mat-raised-button color="primary">login</button>
     </form>
   </div>

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="box">
-    <h2 class="lead">Already a member? <a routerLink="/login">Sign in</a> instead</h2>
+    <h2>Welcome to Todo-it!</h2>
     <form (submit)="onSignupSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger">
         {{ formError }}
@@ -11,7 +11,6 @@
           class="form-control"
           id="name"
           name="name"
-          placeholder="Enter your name"
           [(ngModel)]="credentials.name"
         />
       </div>
@@ -22,7 +21,6 @@
           class="form-control"
           id="email"
           name="email"
-          placeholder="Enter email address"
           [(ngModel)]="credentials.email"
         />
       </div>
@@ -33,10 +31,10 @@
           class="form-control"
           id="password"
           name="password"
-          placeholder="e.g 12+ alphanumerics"
           [(ngModel)]="credentials.password"
         />
       </div>
+      <p>Already have an account? <a routerLink="/login">Sign in</a></p>
       <button mat-raised-button color="primary">Signup</button>
     </form>
   </div>

@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
   public onLoginSubmit(): void {
     this.formError = '';
     if (!this.credentials.email || !this.credentials.password) {
-      this.formError = 'Please fill out the e-mail and password fields';
+      this.formError = 'Please fill out the e-mail and password fields.';
     } else {
       this.userAuthService
         .login(this.credentials.email, this.credentials.password)
