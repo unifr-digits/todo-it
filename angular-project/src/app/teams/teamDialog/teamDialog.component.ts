@@ -38,7 +38,6 @@ export class TeamDialogComponent implements OnInit {
       name: [this.data?.team?.name, [Validators.required]],
       description: [this.data?.team?.description, [Validators.required]],
       members: [this.data?.team?.members],
-      modules: [this.data?.team?.modules],
       tasks: [this.data?.team?.tasks],
       projects: [this.data?.team?.projects],
     });
@@ -55,14 +54,13 @@ export class TeamDialogComponent implements OnInit {
       return;
     }
 
-    const { name, description, members, modules, tasks, projects } = this.teamForm.value;
+    const { name, description, members, tasks, projects } = this.teamForm.value;
 
     const team: Team = {
       name,
       description,
       team_id: this.data.team.team_id,
       members,
-      modules,
       tasks,
       projects,
     };

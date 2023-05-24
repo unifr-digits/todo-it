@@ -7,7 +7,6 @@ export interface Team {
   name: string;
   description: string;
   members: User[];
-  modules: string[];
   tasks: Task[];
   projects: Project[];
 }

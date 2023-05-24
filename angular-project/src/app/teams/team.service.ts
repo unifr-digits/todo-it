@@ -16,7 +16,7 @@ export class TeamService extends Dexie {
   constructor() {
     super('teams-db');
     this.version(1).stores({
-      teams: '++team_id, name,description,members,modules,tasks,projects',
+      teams: '++team_id, name,description,members,tasks,projects',
     });
   }
 
@@ -25,12 +25,11 @@ export class TeamService extends Dexie {
     return teams;
   }
 
-  addTeam(name: string, description: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
+  addTeam(name: string, description: string, members: User[], tasks: Task[], projects: Project[]) {
     this.teams.add({
       name,
       description,
       members,
-      modules,
       tasks,
       projects,
     });
