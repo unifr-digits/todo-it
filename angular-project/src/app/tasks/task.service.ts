@@ -15,7 +15,7 @@ export class TaskService extends Dexie {
   constructor() {
     super('tasks-db');
     this.version(1).stores({
-      tasks: '++task_id, name, desc, date, modules, done, assignedUsers, assignedProjects',
+      tasks: '++task_id, name, desc, date, done, assignedUsers, assignedProjects',
     });
   }
 
@@ -24,20 +24,11 @@ export class TaskService extends Dexie {
     return tasks;
   }
 
-  addTask(
-    name: string,
-    desc: string,
-    date: string,
-    modules: string[],
-    done: boolean,
-    assignedUsers: User[],
-    assignedProjects: Project[]
-  ) {
+  addTask(name: string, desc: string, date: string, done: boolean, assignedUsers: User[], assignedProjects: Project[]) {
     this.tasks.add({
       name,
       desc,
       date,
-      modules,
       done,
       assignedUsers,
       assignedProjects,

@@ -10,7 +10,6 @@
     <label [for]="task.name">{{ task.name }}</label>
     <div class="desc">{{ task.desc }}</div>
     <div class="date">{{ task.date }}</div>
-    <div class="modules">{{ task.modules }}</div>
     <ng-container *ngIf="task.assignedUsers">
       <div class="assignedUsers">
         <span *ngFor="let user of task.assignedUsers">

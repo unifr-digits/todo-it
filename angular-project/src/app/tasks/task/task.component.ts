@@ -34,8 +34,8 @@ export class TaskComponent implements OnInit {
     this.updateProjects();
   }
 
-  addTask(name: string, desc: string, date: string, modules: string[], users: User[], projects: Project[]) {
-    this.taskService.addTask(name, desc, date, modules, false, users, projects);
+  addTask(name: string, desc: string, date: string, users: User[], projects: Project[]) {
+    this.taskService.addTask(name, desc, date, false, users, projects);
   }
 
   deleteTask(task: Task) {
@@ -53,15 +53,15 @@ export class TaskComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '500px',
       data: {
-        task: this.task || { name: '', desc: '', date: '', modules: [], assignedUsers: [], assignedProjects: [] },
+        task: this.task || { name: '', desc: '', date: '', assignedUsers: [], assignedProjects: [] },
         users: this.users,
         projects: this.projects,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const { name, desc, date, modules, assignedUsers, assignedProjects } = result;
-        this.addTask(name, desc, date, modules, assignedUsers, assignedProjects);
+        const { name, desc, date, assignedUsers, assignedProjects } = result;
+        this.addTask(name, desc, date, assignedUsers, assignedProjects);
         this.updateTasks();
       }
     });

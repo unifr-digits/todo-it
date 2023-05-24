@@ -22,8 +22,8 @@ export class ProjectComponent implements OnInit {
     this.updateProjects();
   }
 
-  addProject(name: string, desc: string, modules: string[], tasks: Task[]) {
-    this.projectService.addProject(name, desc, modules, tasks);
+  addProject(name: string, desc: string, tasks: Task[]) {
+    this.projectService.addProject(name, desc, tasks);
   }
 
   deleteProject(project: Project) {
@@ -34,14 +34,14 @@ export class ProjectComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectDialogComponent, {
       width: '500px',
       data: {
-        project: this.project || { name: '', desc: '', modules: [], tasks: [] },
+        project: this.project || { name: '', desc: '', tasks: [] },
         tasks: this.tasks,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const { name, desc, modules, tasks } = result;
-        this.addProject(name, desc, modules, tasks);
+        const { name, desc, tasks } = result;
+        this.addProject(name, desc, tasks);
         this.updateProjects();
       }
     });

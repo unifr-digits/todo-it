@@ -14,7 +14,7 @@ export class ProjectService extends Dexie {
   constructor() {
     super('projects-db');
     this.version(1).stores({
-      projects: '++project_id, name, desc, modules, tasks',
+      projects: '++project_id, name, desc, tasks',
     });
   }
 
@@ -23,11 +23,10 @@ export class ProjectService extends Dexie {
     return projects;
   }
 
-  addProject(name: string, desc: string, modules: string[], tasks: Task[]) {
+  addProject(name: string, desc: string, tasks: Task[]) {
     this.projects.add({
       name,
       desc,
-      modules,
       tasks,
     });
   }

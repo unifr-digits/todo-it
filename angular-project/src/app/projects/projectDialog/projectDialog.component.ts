@@ -26,7 +26,6 @@ export class ProjectDialogComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: [this.data?.project?.name, [Validators.required]],
       desc: [this.data?.project?.desc, [Validators.required]],
-      modules: [this.data?.project?.modules],
       tasks: [this.data?.project?.tasks],
     });
   }
@@ -40,13 +39,12 @@ export class ProjectDialogComponent implements OnInit {
       return;
     }
 
-    const { name, desc, modules, tasks } = this.projectForm.value;
+    const { name, desc, tasks } = this.projectForm.value;
 
     const project: Project = {
       name,
       desc,
       project_id: this.data.project.project_id,
-      modules,
       tasks,
     };
 

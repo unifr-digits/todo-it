@@ -3,7 +3,6 @@
   <div class="project">
     <label [for]="project.name">{{ project.name }}</label>
     <div class="desc">{{ project.desc }}</div>
-    <div class="modules">{{ project.modules }}</div>
     <ng-container *ngIf="project.tasks">
       <div class="tasks">
         <span *ngFor="let task of project.tasks">

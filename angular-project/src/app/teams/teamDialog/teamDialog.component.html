@@ -19,11 +19,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Modules</mat-label>
-      <textarea matInput formControlName="modules"></textarea>
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label>Assign Tasks</mat-label>
       <mat-select formControlName="tasks" multiple matInput>
         <mat-option *ngFor="let task of tasks" [value]="task">{{ task.name }}</mat-option>

@@ -15,21 +15,13 @@ export class UserService {
     return users;
   }
 
-  addUser(
-    firstName: string,
-    lastName: string,
-    userName: string,
-    emailAddress: string,
-    password: string,
-    usedDevices: string[]
-  ) {
+  addUser(firstName: string, lastName: string, userName: string, emailAddress: string, password: string) {
     this.allUsers.unshift({
       firstName,
       lastName,
       userName,
       emailAddress,
       password,
-      usedDevices,
     });
   }
   deleteUser(user: User) {

@@ -39,8 +39,8 @@ export class TeamComponent implements OnInit {
     this.updateTeams();
   }
 
-  addTeam(name: string, description: string, members: User[], modules: string[], tasks: Task[], projects: Project[]) {
-    this.teamService.addTeam(name, description, members, modules, tasks, projects);
+  addTeam(name: string, description: string, members: User[], tasks: Task[], projects: Project[]) {
+    this.teamService.addTeam(name, description, members, tasks, projects);
   }
   deleteTeam(team: Team) {
     this.teamService.deleteTeam(team);
@@ -50,7 +50,7 @@ export class TeamComponent implements OnInit {
     const dialogRef = this.dialog.open(TeamDialogComponent, {
       width: '500px',
       data: {
-        team: this.team || { name: '', description: '', member: [], modules: [], tasks: [], projects: [] },
+        team: this.team || { name: '', description: '', member: [], tasks: [], projects: [] },
         members: this.members,
         tasks: this.tasks,
         projects: this.projects,
@@ -58,8 +58,8 @@ export class TeamComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const { name, description, members, modules, tasks, projects } = result;
-        this.addTeam(name, description, members, modules, tasks, projects);
+        const { name, description, members, tasks, projects } = result;
+        this.addTeam(name, description, members, tasks, projects);
         this.updateTeams();
       }
     });

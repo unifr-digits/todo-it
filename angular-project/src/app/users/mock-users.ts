@@ -7,7 +7,6 @@ export const USERS: User[] = [
     userName: 'GauchD',
     emailAddress: 'david.gauch@unifr.ch',
     password: '123456',
-    usedDevices: ['tablet', 'phone'],
   },
   {
     firstName: 'Mattias',
@@ -15,6 +14,5 @@ export const USERS: User[] = [
     userName: 'DuerrmeierM',
     emailAddress: 'mattias.duerrmeier@unifr.ch',
     password: 'secretpassword',
-    usedDevices: ['tablet', 'phone'],
   },
 ];
