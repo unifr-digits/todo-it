@@ -58,7 +58,6 @@ export class SyncService {
 
     for (let task of tasks) {
       let object = { "task_id": task.task_id, "name": task.name, "done": task.done}
-      console.log(object);
 
       try {
         let response: any;
@@ -77,7 +76,6 @@ export class SyncService {
 
     for (let team of teams) {
       let object = { "team_id": team.team_id, "name": team.name, "description": team.description }
-      console.log(object);
 
       try {
         let response: any;
@@ -96,7 +94,6 @@ export class SyncService {
 
       for (let project of projects) {
         let object = { "project_id": project.project_id, "name": project.name}
-        console.log(object);
 
         try {
           let response: any;
@@ -132,13 +129,10 @@ export class SyncService {
       let newTeams: any;
       newTeams = await this.httpClient.get<Team[]>(API_BASE_URL + 'teams', httpOptions).toPromise();
 
-      console.log(newTasks);
       this.taskService.tasks.bulkAdd(newTasks);
 
-      console.log(newProjects);
       this.projectService.projects.bulkAdd(newProjects);
 
-      console.log(newTeams);
       this.teamService.teams.bulkAdd(newTeams);
 
       this.subject.next();
