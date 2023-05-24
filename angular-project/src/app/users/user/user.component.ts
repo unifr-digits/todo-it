@@ -32,9 +32,8 @@ export class UserComponent implements OnInit {
     userName: string,
     emailAddress: string,
     password: string,
-    usedDevices: string[]
   ) {
-    this.userService.addUser(firstName, lastName, userName, emailAddress, password, usedDevices);
+    this.userService.addUser(firstName, lastName, userName, emailAddress, password);
   }
 
   deleteUser(user: User) {

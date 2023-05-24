@@ -24,10 +24,4 @@ export class UserDetailComponent {
     }
     this.user.emailAddress = emailAddress;
   }
-  setUsedDevices(usedDevices: string[]): void {
-    if (this.user == null) {
-      return;
-    }
-    this.user.usedDevices = usedDevices;
-  }
 }

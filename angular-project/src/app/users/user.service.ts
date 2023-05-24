@@ -21,7 +21,6 @@ export class UserService {
     userName: string,
     emailAddress: string,
     password: string,
-    usedDevices: string[]
   ) {
     this.allUsers.unshift({
       firstName,
@@ -29,7 +28,6 @@ export class UserService {
       userName,
       emailAddress,
       password,
-      usedDevices,
     });
   }
   deleteUser(user: User) {
