@@ -14,22 +14,26 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: AppComponent,
+  {
+    path: '',
+    component: AppComponent,
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'signup', component: UserSignupComponent },
       { path: 'login', component: UserLoginComponent },
-    ]
+    ],
   },
   // the components for the app need their own route with navigation bar
-  { path: 'app', component: NavbarComponent,
+  {
+    path: 'app',
+    component: NavbarComponent,
     children: [
+      { path: 'tasks', component: TaskComponent },
       { path: 'profile', component: UserProfileComponent },
       { path: 'users', component: UserComponent },
       { path: 'teams', component: TeamComponent },
-      { path: 'tasks', component: TaskComponent },
       { path: 'projects', component: ProjectComponent },
-    ]
+    ],
   },
   { path: '**', component: PageNotFoundComponent },
 ];

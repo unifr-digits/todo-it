@@ -10,10 +10,10 @@ import { Team } from './teams/team';
 import { ProjectService } from './projects/project.service';
 import { Project } from './projects/project';
 
-const API_BASE_URL = "https://127.0.0.1:52439/api/v1/";
+const API_BASE_URL = 'https://127.0.0.1:52439/api/v1/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SyncService {
   private subject = new Subject<void>();
@@ -24,21 +24,21 @@ export class SyncService {
     private readonly teamService: TeamService,
     private readonly projectService: ProjectService,
     private readonly userAuthService: UserAuthService,
-    private readonly httpClient: HttpClient) {}
+    private readonly httpClient: HttpClient
+  ) {}
 
-  async sync() : Promise<string> {
-
+  async sync(): Promise<string> {
     const json_web_token = UserAuthService.getJwt();
 
     const httpOptions: any = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'x-access-token': json_web_token
+        'Content-Type': 'application/json',
+        'x-access-token': json_web_token,
       }),
       responseType: 'json',
     };
 
-    let errorMessage = "";
+    let errorMessage = '';
     errorMessage = await this.sendPostRequests(httpOptions);
     errorMessage = await this.sendGetRequest(httpOptions);
 
@@ -47,25 +47,23 @@ export class SyncService {
     return statusMessage;
   }
 
-  async sendPostRequests(httpOptions: any) : Promise<string> {
-
+  async sendPostRequests(httpOptions: any): Promise<string> {
     const tasks = await this.taskService.tasks.toArray();
     const teams = await this.teamService.teams.toArray();
     const projects = await this.projectService.projects.toArray();
 
-    console.log("Sending POST requests ...");
-    let errorMessage = "";
+    console.log('Sending POST requests ...');
+    let errorMessage = '';
 
     for (let task of tasks) {
-      let object = { "task_id": task.task_id, "name": task.name, "done": task.done}
+      let object = { task_id: task.task_id, name: task.name, done: task.done };
 
       try {
         let response: any;
         response = await this.httpClient.post(API_BASE_URL + 'tasks', object, httpOptions).toPromise();
-
-      } catch(error) {
+      } catch (error) {
         // when trying to add an already existing task, a duplicate key error occurs - issue PUT request in this case
-        if (error.error.startsWith("error: duplicate key value")) {
+        if (error.error.startsWith('error: duplicate key value')) {
           await this.httpClient.put(API_BASE_URL + 'tasks/' + task.task_id, object, httpOptions).toPromise();
         } else {
           errorMessage = error.error;
@@ -75,15 +73,14 @@ export class SyncService {
     }
 
     for (let team of teams) {
-      let object = { "team_id": team.team_id, "name": team.name, "description": team.description }
+      let object = { team_id: team.team_id, name: team.name, description: team.description };
 
       try {
         let response: any;
         response = await this.httpClient.post(API_BASE_URL + 'teams', object, httpOptions).toPromise();
-
-      } catch(error) {
+      } catch (error) {
         // when trying to add an already existing team, a duplicate key error occurs - issue PUT request in this case
-        if (error.error.startsWith("error: duplicate key value")) {
+        if (error.error.startsWith('error: duplicate key value')) {
           await this.httpClient.put(API_BASE_URL + 'teams/' + team.team_id, object, httpOptions).toPromise();
         } else {
           errorMessage = error.error;
@@ -92,34 +89,31 @@ export class SyncService {
       }
     }
 
-      for (let project of projects) {
-        let object = { "project_id": project.project_id, "name": project.name}
+    for (let project of projects) {
+      let object = { project_id: project.project_id, name: project.name };
 
-        try {
-          let response: any;
-          response = await this.httpClient.post(API_BASE_URL + 'projects', object, httpOptions).toPromise();
-
-        } catch(error) {
-          // when trying to add an already existing project, a duplicate key error occurs - issue PUT request in this case
-          if (error.error.startsWith("error: duplicate key value")) {
-            await this.httpClient.put(API_BASE_URL + 'projects/' + project.project_id, object, httpOptions).toPromise();
-          } else {
-            errorMessage = error.error;
-            console.log(error.error);
-          }
+      try {
+        let response: any;
+        response = await this.httpClient.post(API_BASE_URL + 'projects', object, httpOptions).toPromise();
+      } catch (error) {
+        // when trying to add an already existing project, a duplicate key error occurs - issue PUT request in this case
+        if (error.error.startsWith('error: duplicate key value')) {
+          await this.httpClient.put(API_BASE_URL + 'projects/' + project.project_id, object, httpOptions).toPromise();
+        } else {
+          errorMessage = error.error;
+          console.log(error.error);
         }
       }
-
-      return errorMessage;
     }
 
-    async sendGetRequest(httpOptions: any) : Promise<string> {
+    return errorMessage;
+  }
 
-    console.log("Sending GET request ...");
-    let errorMessage = "";
+  async sendGetRequest(httpOptions: any): Promise<string> {
+    console.log('Sending GET request ...');
+    let errorMessage = '';
 
     try {
-
       let newTasks: any;
       newTasks = await this.httpClient.get<Task[]>(API_BASE_URL + 'tasks', httpOptions).toPromise();
 
@@ -136,8 +130,7 @@ export class SyncService {
       this.teamService.teams.bulkAdd(newTeams);
 
       this.subject.next();
-
-    } catch(error) {
+    } catch (error) {
       errorMessage = error.error;
       console.log(error);
     }
@@ -145,18 +138,21 @@ export class SyncService {
     return errorMessage;
   }
 
-  getStatusMessage(errorMessage: string) : string{
-
+  getStatusMessage(errorMessage: string): string {
     let date = new Date();
-    let timestamp = date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0') + ":" + date.getSeconds().toString().padStart(2, '0');
+    let timestamp =
+      date.getHours().toString().padStart(2, '0') +
+      ':' +
+      date.getMinutes().toString().padStart(2, '0') +
+      ':' +
+      date.getSeconds().toString().padStart(2, '0');
 
-    let statusMessage = "";
+    let statusMessage = '';
     if (!errorMessage) {
-      statusMessage = timestamp + " " + "synchronized";
+      statusMessage = timestamp + ' ' + 'synchronized';
     } else {
-      statusMessage = timestamp + " " + errorMessage;
+      statusMessage = timestamp + ' ' + errorMessage;
     }
     return statusMessage;
   }
-
 }

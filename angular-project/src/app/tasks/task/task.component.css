@@ -48,3 +48,9 @@
 .task:focus-within label:first-of-type {
   color: #0d8dee;
 }
+
+.creation-bottom-right {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+}

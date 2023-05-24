@@ -15,7 +15,7 @@ export class NavbarComponent {
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver,private syncService: SyncService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private syncService: SyncService) {}
   sync() {
     this.syncService.sync();
   }

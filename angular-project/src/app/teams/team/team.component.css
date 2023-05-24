@@ -10,3 +10,9 @@
   position: relative;
   overflow: auto;
 }
+
+.creation-bottom-right {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+}

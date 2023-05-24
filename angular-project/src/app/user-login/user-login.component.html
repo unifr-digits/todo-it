@@ -7,23 +7,11 @@
       </div>
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          name="email"
-          [(ngModel)]="credentials.email"
-        />
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="credentials.email" />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          type="pasword"
-          class="form-control"
-          id="password"
-          name="password"
-          [(ngModel)]="credentials.password"
-        />
+        <input type="pasword" class="form-control" id="password" name="password" [(ngModel)]="credentials.password" />
       </div>
       <p>New to To-do it? <a routerLink="/signup">create an account</a>.</p>
       <button mat-raised-button color="primary">login</button>
