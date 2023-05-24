@@ -17,11 +17,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Modules</mat-label>
-      <textarea matInput formControlName="modules"></textarea>
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label>Assign Users</mat-label>
       <mat-select formControlName="assignedUsers" multiple matInput>
         <mat-option *ngFor="let user of assignedUsers" [value]="user">{{ user.firstName }}</mat-option>

@@ -33,7 +33,6 @@ export class TaskDialogComponent implements OnInit {
       name: [this.data?.task?.name, [Validators.required]],
       desc: [this.data?.task?.desc, [Validators.required]],
       date: [this.data?.task?.date, [Validators.required]],
-      modules: [this.data?.task?.modules],
       assignedUsers: [this.data?.task?.assignedUsers],
       assignedProjects: [this.data?.task?.assignedProjects],
     });
@@ -47,14 +46,13 @@ export class TaskDialogComponent implements OnInit {
       return;
     }
 
-    const { name, desc, date, modules, assignedUsers, assignedProjects } = this.taskForm.value;
+    const { name, desc, date, assignedUsers, assignedProjects } = this.taskForm.value;
 
     const task: Task = {
       name,
       desc,
       task_id: this.data.task.task_id,
       date,
-      modules,
       done: false,
       assignedUsers,
       assignedProjects,

@@ -15,13 +15,7 @@ export class UserService {
     return users;
   }
 
-  addUser(
-    firstName: string,
-    lastName: string,
-    userName: string,
-    emailAddress: string,
-    password: string,
-  ) {
+  addUser(firstName: string, lastName: string, userName: string, emailAddress: string, password: string) {
     this.allUsers.unshift({
       firstName,
       lastName,

@@ -6,7 +6,6 @@ export interface Task {
   name: string;
   desc: string;
   date: string;
-  modules: string[];
   done: boolean;
   assignedUsers: User[];
   assignedProjects: Project[];
