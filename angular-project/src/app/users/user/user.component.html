@@ -1,32 +1,4 @@
 <h1>Users</h1>
-<div class="user-creation">
-  <h2>Create User</h2>
-  <form (keyup.enter)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value)">
-    <label for="firstName">First Name:</label>
-    <input #firstName placeholder="Enter first name" class="lg-text-input" id="firstName" /><br />
-
-    <label for="lastName">Last Name:</label>
-    <input #lastName placeholder="Enter last name" class="lg-text-input" id="lastName" /><br />
-
-    <label for="userName">Username:</label>
-    <input #userName placeholder="Enter username" class="lg-text-input" id="userName" /><br />
-
-    <label for="emailAddress">Email Address:</label>
-    <input #emailAddress placeholder="Enter email address" class="lg-text-input" id="emailAddress" /><br />
-
-    <label for="password">Password:</label>
-    <input #password placeholder="Enter password" class="lg-text-input" type="password" id="password" /><br />
-  </form>
-
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="addUser(firstName.value, lastName.value, userName.value, emailAddress.value, password.value)"
-  >
-    Add User
-  </button>
-</div>
-
 <h2>
   {{ users.length }} <span *ngIf="users.length <= 1; else userPlural">user</span>
   <ng-template #userPlural>users</ng-template>

@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { User } from './user';
-import { USERS } from './mock-users';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  allUsers = USERS;
+  allUsers = [];
 
   getUsers(): Observable<User[]> {
-    const users = of(USERS);
+    const users = of(this.allUsers);
     return users;
   }
 
