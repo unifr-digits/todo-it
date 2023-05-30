@@ -1,4 +1,9 @@
 <h1>Projects</h1>
+<h2>
+  {{ projects.length }} <span *ngIf="projects.length <= 1; else taskPlural">project</span>
+  <ng-template #taskPlural>projects</ng-template>
+</h2>
+
 <li *ngFor="let project of projects">
   <div class="project">
     <label [for]="project.name">{{ project.name }}</label>
