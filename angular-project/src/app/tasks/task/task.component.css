@@ -17,8 +17,8 @@
   margin: 1rem;
   padding: 1rem;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  background-color: #ccc;
+  border: 2px solid #d1d5db;
+  background-color: #e5e7eb;
   border-radius: 10px;
   position: relative;
   overflow: auto;
@@ -53,4 +53,10 @@
   position: absolute;
   bottom: 32px;
   right: 32px;
+}
+
+.btn-wrapper {
+  position: absolute;
+  bottom: 0;
+  margin: 16px 8px;
 }

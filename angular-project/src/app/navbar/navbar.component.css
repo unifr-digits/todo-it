@@ -3,27 +3,24 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 185px;
 }
 
 .sidenav .mat-toolbar {
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
+.mat-toolbar .mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
-.main {
-  max-width: 800px;
-  width: 100%;
-  margin: 2rem auto;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+.main-app {
+  margin: 32px;
+  list-style-type: none;
 }
+
 .spacer {
   flex: 1 1 auto;
 }

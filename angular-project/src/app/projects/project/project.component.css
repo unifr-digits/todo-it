@@ -16,3 +16,8 @@
   bottom: 32px;
   right: 32px;
 }
+
+.btn-wrapper {
+  position: absolute;
+  bottom: 16px;
+}
