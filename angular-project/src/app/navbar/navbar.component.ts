@@ -10,7 +10,7 @@ import { SyncService } from '../sync.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  syncStatus = "";
+  syncStatus = '';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
@@ -20,14 +20,15 @@ export class NavbarComponent {
   constructor(private breakpointObserver: BreakpointObserver, private syncService: SyncService) {}
 
   sync() {
-    this.syncService.sync()
-    .then(result => {
-      console.log(result);
-      this.syncStatus = result.toString();
-    })
-    .catch(error => {
-      console.log(error.error);
-      this.syncStatus = error.error;
-    });
+    this.syncService
+      .sync()
+      .then((result) => {
+        console.log(result);
+        this.syncStatus = result.toString();
+      })
+      .catch((error) => {
+        console.log(error.error);
+        this.syncStatus = error.error;
+      });
   }
 }

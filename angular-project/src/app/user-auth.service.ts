@@ -39,9 +39,7 @@ export class UserAuthService {
 
     const object = { email: email, password: password, name: name };
     try {
-      await this.httpClient
-        .post<string>(API_BASE_URL + 'register', object, httpOptions)
-        .toPromise();
+      await this.httpClient.post<string>(API_BASE_URL + 'register', object, httpOptions).toPromise();
     } catch (error) {
       console.log(error.error);
       throw new Error(error.error);
