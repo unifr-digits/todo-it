@@ -1,21 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, Input } from '@angular/core';
+import { Observable, from } from 'rxjs';
+import Dexie from 'dexie';
 
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  allUsers = [];
+export class UserService extends Dexie {
+  users!: Dexie.Table<User, number>;
+
+  @Input() task!: User;
+
+  constructor() {
+    super('users-db');
+    this.version(1).stores({
+      users: '++user_id, firstName, lastName, userName, emailAddress, password',
+    });
+  }
 
   getUsers(): Observable<User[]> {
-    const users = of(this.allUsers);
+    const users = from(this.users.toArray());
     return users;
   }
 
   addUser(firstName: string, lastName: string, userName: string, emailAddress: string, password: string) {
-    this.allUsers.unshift({
+    this.users.add({
       firstName,
       lastName,
       userName,
@@ -23,18 +33,8 @@ export class UserService {
       password,
     });
   }
-  deleteUser(user: User) {
-    this.allUsers.splice(this.allUsers.indexOf(user), 1);
-  }
 
-  logIn(userName: string, password: string): void {
-    if (userName === userName && password === password) {
-      console.log(`logged in as ${userName}`);
-    } else {
-      console.log(`Incorrect username or password!`);
-    }
-  }
-  logOut(): void {
-    console.log(`logged out`);
+  async updateUsers() {
+    this.users = await this.users;
   }
 }

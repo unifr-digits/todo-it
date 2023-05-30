@@ -7,7 +7,9 @@ import { TeamService } from './teams/team.service';
 import { UserAuthService } from './user-auth.service';
 import { Task } from './tasks/task';
 import { Team } from './teams/team';
+import { User } from './users/user';
 import { ProjectService } from './projects/project.service';
+import { UserService } from './users/user.service';
 import { Project } from './projects/project';
 
 const API_BASE_URL = 'https://127.0.0.1:52439/api/v1/';
@@ -23,6 +25,7 @@ export class SyncService {
     private readonly taskService: TaskService,
     private readonly teamService: TeamService,
     private readonly projectService: ProjectService,
+    private readonly userService: UserService,
     private readonly userAuthService: UserAuthService,
     private readonly httpClient: HttpClient
   ) {}
@@ -123,11 +126,16 @@ export class SyncService {
       let newTeams: any;
       newTeams = await this.httpClient.get<Team[]>(API_BASE_URL + 'teams', httpOptions).toPromise();
 
+      let newUsers: any;
+      newUsers = await this.httpClient.get<User[]>(API_BASE_URL + 'users', httpOptions).toPromise();
+
       this.taskService.tasks.bulkAdd(newTasks);
 
       this.projectService.projects.bulkAdd(newProjects);
 
       this.teamService.teams.bulkAdd(newTeams);
+
+      this.userService.users.bulkAdd(newUsers);
 
       this.subject.next();
     } catch (error) {
