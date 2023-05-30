@@ -15,7 +15,7 @@ export class UserService extends Dexie {
   constructor() {
     super('users-db');
     this.version(1).stores({
-      users: '++user_id, name, email, password',
+      users: '++user_id, name, email',
     });
   }
 
@@ -24,11 +24,10 @@ export class UserService extends Dexie {
     return users;
   }
 
-  addUser(name: string, email: string, password: string) {
+  addUser(name: string, email: string) {
     this.users.add({
       name,
       email,
-      password,
     });
   }
 
