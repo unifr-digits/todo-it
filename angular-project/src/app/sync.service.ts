@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
@@ -22,10 +22,10 @@ export class SyncService {
   onSyncFinished: Observable<void> = this.subject;
 
   constructor(
-    private readonly taskService: TaskService,
-    private readonly teamService: TeamService,
-    private readonly projectService: ProjectService,
-    private readonly userService: UserService,
+    private taskService: TaskService,
+    private teamService: TeamService,
+    private projectService: ProjectService,
+    private userService: UserService,
     private readonly userAuthService: UserAuthService,
     private readonly httpClient: HttpClient
   ) {}
@@ -42,10 +42,9 @@ export class SyncService {
     };
 
     let errorMessage = '';
-    errorMessage = await this.sendPostRequests(httpOptions);
+    //errorMessage = await this.sendPostRequests(httpOptions);
     errorMessage = await this.sendGetRequest(httpOptions);
-
-    let statusMessage = this.getStatusMessage(errorMessage);
+    const statusMessage = this.getStatusMessage(errorMessage);
 
     return statusMessage;
   }
@@ -58,12 +57,11 @@ export class SyncService {
     console.log('Sending POST requests ...');
     let errorMessage = '';
 
-    for (let task of tasks) {
-      let object = { task_id: task.task_id, name: task.name, done: task.done };
+    for (const task of tasks) {
+      const object = { task_id: task.task_id, name: task.name, done: task.done };
 
       try {
-        let response: any;
-        response = await this.httpClient.post(API_BASE_URL + 'tasks', object, httpOptions).toPromise();
+        await this.httpClient.post(API_BASE_URL + 'tasks', object, httpOptions).toPromise();
       } catch (error) {
         // when trying to add an already existing task, a duplicate key error occurs - issue PUT request in this case
         if (error.error.startsWith('error: duplicate key value')) {
@@ -75,12 +73,11 @@ export class SyncService {
       }
     }
 
-    for (let team of teams) {
-      let object = { team_id: team.team_id, name: team.name, description: team.description };
+    for (const team of teams) {
+      const object = { team_id: team.team_id, name: team.name, description: team.description };
 
       try {
-        let response: any;
-        response = await this.httpClient.post(API_BASE_URL + 'teams', object, httpOptions).toPromise();
+        await this.httpClient.post(API_BASE_URL + 'teams', object, httpOptions).toPromise();
       } catch (error) {
         // when trying to add an already existing team, a duplicate key error occurs - issue PUT request in this case
         if (error.error.startsWith('error: duplicate key value')) {
@@ -92,12 +89,11 @@ export class SyncService {
       }
     }
 
-    for (let project of projects) {
-      let object = { project_id: project.project_id, name: project.name };
+    for (const project of projects) {
+      const object = { project_id: project.project_id, name: project.name };
 
       try {
-        let response: any;
-        response = await this.httpClient.post(API_BASE_URL + 'projects', object, httpOptions).toPromise();
+        await this.httpClient.post(API_BASE_URL + 'projects', object, httpOptions).toPromise();
       } catch (error) {
         // when trying to add an already existing project, a duplicate key error occurs - issue PUT request in this case
         if (error.error.startsWith('error: duplicate key value')) {
@@ -117,17 +113,13 @@ export class SyncService {
     let errorMessage = '';
 
     try {
-      let newTasks: any;
-      newTasks = await this.httpClient.get<Task[]>(API_BASE_URL + 'tasks', httpOptions).toPromise();
+      const newTasks: any = await this.httpClient.get<Task[]>(API_BASE_URL + 'tasks', httpOptions).toPromise();
 
-      let newProjects: any;
-      newProjects = await this.httpClient.get<Project[]>(API_BASE_URL + 'projects', httpOptions).toPromise();
+      const newProjects: any = await this.httpClient.get<Project[]>(API_BASE_URL + 'projects', httpOptions).toPromise();
 
-      let newTeams: any;
-      newTeams = await this.httpClient.get<Team[]>(API_BASE_URL + 'teams', httpOptions).toPromise();
+      const newTeams: any = await this.httpClient.get<Team[]>(API_BASE_URL + 'teams', httpOptions).toPromise();
 
-      let newUsers: any;
-      newUsers = await this.httpClient.get<User[]>(API_BASE_URL + 'users', httpOptions).toPromise();
+      const newUsers: any = await this.httpClient.get<User[]>(API_BASE_URL + 'users', httpOptions).toPromise();
 
       this.taskService.tasks.bulkAdd(newTasks);
 
@@ -147,8 +139,8 @@ export class SyncService {
   }
 
   getStatusMessage(errorMessage: string): string {
-    let date = new Date();
-    let timestamp =
+    const date = new Date();
+    const timestamp =
       date.getHours().toString().padStart(2, '0') +
       ':' +
       date.getMinutes().toString().padStart(2, '0') +

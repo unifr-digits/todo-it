@@ -36,6 +36,6 @@ export class TeamService extends Dexie {
   }
 
   deleteTeam(team: Team) {
-    this.teams.delete(team?.team_id!);
+    this.teams.delete(team?.team_id);
   }
 }

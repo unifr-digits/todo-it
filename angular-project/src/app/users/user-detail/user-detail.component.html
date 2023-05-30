@@ -1,8 +1,8 @@
 <div *ngIf="user">
-  <h2>{{ user.firstName | uppercase }} Details</h2>
-  <div>lastName: {{ user.lastName }}</div>
+  <h2>{{ user.name | uppercase }} Details</h2>
+  <div>name: {{ user.name }}</div>
   <div>
-    <label for="user-firstName">User firstName: </label>
-    <input id="user-firstName" [(ngModel)]="user.firstName" placeholder="firstName" />
+    <label for="user-email">Email: </label>
+    <input id="user-firstName" [(ngModel)]="user.email" placeholder="email" />
   </div>
 </div>

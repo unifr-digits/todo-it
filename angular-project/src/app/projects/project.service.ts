@@ -32,6 +32,6 @@ export class ProjectService extends Dexie {
   }
 
   deleteProject(project: Project) {
-    this.projects.delete(project?.project_id!);
+    this.projects.delete(project?.project_id);
   }
 }

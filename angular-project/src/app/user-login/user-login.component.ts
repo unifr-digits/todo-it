@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../user-auth.service';
-import { SyncService } from '../sync.service';
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css'],
 })
-export class UserLoginComponent implements OnInit {
-  public formError: string = '';
+export class UserLoginComponent {
+  public formError = '';
 
   public pageContent = {
     header: {
@@ -25,8 +24,6 @@ export class UserLoginComponent implements OnInit {
     email: '',
     password: '',
   };
-
-  ngOnInit() {}
 
   public onLoginSubmit(): void {
     this.formError = '';

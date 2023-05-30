@@ -1,6 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { interval, take, lastValueFrom } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const API_BASE_URL = 'https://127.0.0.1:52439/api/v1/';
 
@@ -8,7 +7,7 @@ const API_BASE_URL = 'https://127.0.0.1:52439/api/v1/';
   providedIn: 'root',
 })
 export class UserAuthService {
-  private static jwt: string = '';
+  private static jwt = '';
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -20,9 +19,9 @@ export class UserAuthService {
       responseType: 'text',
     };
 
-    let object = { email: email, password: password };
+    const object = { email: email, password: password };
     try {
-      let response: any = await this.httpClient.post<string>(API_BASE_URL + 'login', object, httpOptions).toPromise();
+      const response: any = await this.httpClient.post<string>(API_BASE_URL + 'login', object, httpOptions).toPromise();
       UserAuthService.jwt = response;
     } catch (error) {
       console.log(error.error);
@@ -38,9 +37,9 @@ export class UserAuthService {
       responseType: 'text',
     };
 
-    let object = { email: email, password: password, name: name };
+    const object = { email: email, password: password, name: name };
     try {
-      let response: any = await this.httpClient
+      await this.httpClient
         .post<string>(API_BASE_URL + 'register', object, httpOptions)
         .toPromise();
     } catch (error) {

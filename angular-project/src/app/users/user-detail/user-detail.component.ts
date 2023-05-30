@@ -10,18 +10,18 @@ import { User } from '../user';
 export class UserDetailComponent {
   @Input() user?: User;
 
-  setName(firstName: string, lastName: string): void {
+  setName(name: string, email: string): void {
     if (this.user == null) {
       return;
     }
-    this.user.firstName = firstName;
-    this.user.lastName = lastName;
+    this.user.name = name;
+    this.user.email = email;
   }
 
-  setEmailAddress(emailAddress: string): void {
+  setEmailAddress(email: string): void {
     if (this.user == null) {
       return;
     }
-    this.user.emailAddress = emailAddress;
+    this.user.email = email;
   }
 }

@@ -36,7 +36,7 @@ export class TaskService extends Dexie {
   }
 
   deleteTask(task: Task) {
-    this.tasks.delete(task?.task_id!);
+    this.tasks.delete(task?.task_id);
   }
 
   async updateTasks() {
