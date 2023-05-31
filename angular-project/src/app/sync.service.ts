@@ -42,7 +42,7 @@ export class SyncService {
     };
 
     let errorMessage = '';
-    //errorMessage = await this.sendPostRequests(httpOptions);
+    errorMessage = await this.sendPostRequests(httpOptions);
     errorMessage = await this.sendGetRequest(httpOptions);
     const statusMessage = this.getStatusMessage(errorMessage);
 
